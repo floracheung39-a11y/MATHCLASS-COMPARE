@@ -172,9 +172,11 @@ function forceOn(n){
 document.addEventListener('click', function(e){
   var t = e.target.closest ? e.target.closest('.t[data-tc]') : null;
   if(!t){return;}
+  var n = t.getAttribute('data-tc');
+  var isOn = !!document.querySelector('.t[data-tc="'+n+'"].sel');
   var pdf = t.getAttribute('data-pdf');
-  if(pdf){
-    forceOn(t.getAttribute('data-tc'));
+  if(!isOn && pdf){
+    forceOn(n);
     window.open(pdf,'_blank');
   } else {
     pick(t);
