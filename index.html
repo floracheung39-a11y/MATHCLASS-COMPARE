@@ -140,17 +140,20 @@ function applyCols(){
     for(var j=0;j<els.length;j++){els[j].style.display=on?'':'none';}
   }
 }
-function pick(el){
-  var n = el.getAttribute('data-tc');
-  var selEl = document.querySelector('.t[data-tc="'+n+'"].sel');
-  var isOn = !!selEl;
+function clearAll(){
   var lgs = document.querySelectorAll('.lg');
   for(var i=0;i<lgs.length;i++){lgs[i].classList.remove('on');}
   var tags = document.querySelectorAll('.t[data-tc]');
   for(var j=0;j<tags.length;j++){tags[j].classList.remove('dim','sel');}
+}
+function pick(el){
+  var n = el.getAttribute('data-tc');
+  var isOn = !!document.querySelector('.t[data-tc="'+n+'"].sel');
+  clearAll();
   if(!isOn){
     var btn = document.querySelector('.lg[data-tc="'+n+'"]');
     if(btn){btn.classList.add('on');}
+    var tags = document.querySelectorAll('.t[data-tc]');
     for(var k=0;k<tags.length;k++){
       if(tags[k].getAttribute('data-tc')===n){tags[k].classList.add('sel');}
       else{tags[k].classList.add('dim');}
@@ -158,12 +161,10 @@ function pick(el){
   }
 }
 function forceOn(n){
-  var lgs = document.querySelectorAll('.lg');
-  for(var i=0;i<lgs.length;i++){lgs[i].classList.remove('on');}
-  var tags = document.querySelectorAll('.t[data-tc]');
-  for(var j=0;j<tags.length;j++){tags[j].classList.remove('dim','sel');}
+  clearAll();
   var btn = document.querySelector('.lg[data-tc="'+n+'"]');
   if(btn){btn.classList.add('on');}
+  var tags = document.querySelectorAll('.t[data-tc]');
   for(var k=0;k<tags.length;k++){
     if(tags[k].getAttribute('data-tc')===n){tags[k].classList.add('sel');}
     else{tags[k].classList.add('dim');}
@@ -171,7 +172,10 @@ function forceOn(n){
 }
 document.addEventListener('click', function(e){
   var t = e.target.closest ? e.target.closest('.t[data-tc]') : null;
-  if(!t){return;}
+  if(!t){
+    if(document.querySelector('.t.sel')){ clearAll(); }
+    return;
+  }
   var n = t.getAttribute('data-tc');
   var isOn = !!document.querySelector('.t[data-tc="'+n+'"].sel');
   var pdf = t.getAttribute('data-pdf');
