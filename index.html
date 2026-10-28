@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>四机构×8学期专题着色对照表（移动端适配）</title>
+<title>四机构×8学期专题着色对照表（含课件跳转）</title>
 <style>
 body{margin:0}
 .t{display:inline-block;border-radius:9px;padding:1px 7px;margin:2px 3px;font-size:11.5px;line-height:1.6;white-space:nowrap;cursor:pointer}
@@ -26,6 +26,7 @@ button.t{border:0;font-family:inherit;cursor:pointer}
 .tc26{background:#F9A825;color:#1a1a1a}.tc27{background:#FFCA28;color:#1a1a1a}.tc28{background:#FFB300;color:#1a1a1a}
 /* 数论·棕系 / 行程·青系 / 其他 */
 .tc29{background:#5D4037;color:#fff}.tc30{background:#00838F;color:#fff}.tc31{background:#E0E0E0;color:#555}
+.haspdf{text-decoration:underline dotted #111;text-underline-offset:2px}
 .dim{filter:grayscale(1);opacity:.2}
 .sel{outline:2px solid #333;outline-offset:1px;box-shadow:0 0 5px rgba(0,0,0,.45)}
 .lg.on{outline:2px solid #333;outline-offset:1px;box-shadow:0 0 5px rgba(0,0,0,.4)}
@@ -57,7 +58,7 @@ th.term{z-index:4;background:#e9e9e9}
 <body>
 <div style="font-family:Microsoft YaHei,sans-serif;padding:10px;">
 <h2 style="font-size:15px;margin:4px 0 6px;">四机构×8学期专题对照</h2>
-<div style="font-size:11px;color:#666;background:#eef4fb;border:1px solid #d5e3f2;border-radius:6px;padding:5px 8px;margin-bottom:6px;">📱 手机端请左右滑动查看；左侧学期列与顶部机构名固定不动。可勾选机构列比较，点击图例或表内专题可高亮、其余置灰，再点一次恢复。</div>
+<div style="font-size:11px;color:#666;background:#eef4fb;border:1px solid #d5e3f2;border-radius:6px;padding:5px 8px;margin-bottom:6px;">手机端请左右滑动查看，左侧学期列与顶部机构名固定不动。可勾选机构列比较。带虚线下划线的课时（当前：乐读二秋第1-8讲）点击会打开对应课件PDF并高亮该专题；图例与其他课时点击仍为高亮/置灰切换，再点一次恢复。</div>
 <div class="lggroup"><span class="lgname lgn-blue">计算</span>
 <button class="t tc1 lg" data-tc="1">巧算/四则运算</button><button class="t tc2 lg" data-tc="2">表内乘除/速算</button><button class="t tc3 lg" data-tc="3">竖式</button><button class="t tc4 lg" data-tc="4">数字谜/填算符</button><button class="t tc5 lg" data-tc="5">带余除法</button><button class="t tc6 lg" data-tc="6">小数/分数/乘方</button><button class="t tc7 lg" data-tc="7">数列/找规律</button><button class="t tc8 lg" data-tc="8">方程/代数</button></div>
 <div class="lggroup"><span class="lgname lgn-red">应用</span>
@@ -91,7 +92,7 @@ th.term{z-index:4;background:#e9e9e9}
 <td class="orgtd col-x"><span class="t tc20" data-tc="20">字典排列法</span><span class="t tc3" data-tc="3">乘法竖式</span><span class="t tc9" data-tc="9">和倍问题</span><span class="t tc3" data-tc="3">大数除法竖式</span><span class="t tc13" data-tc="13">周期问题II</span><span class="t tc25" data-tc="25">过河过桥</span><span class="t tc26" data-tc="26">周长问题I</span><span class="t tc20" data-tc="20">树形图</span><span class="t tc4" data-tc="4">加减法数字谜II</span><span class="t tc4" data-tc="4">巧填算符II</span></td>
 <td class="orgtd col-s"><span class="t tc20" data-tc="20">组数中的枚举</span><span class="t tc2" data-tc="2">表内乘法</span><span class="t tc20" data-tc="20">巧用乘法数图形</span><span class="t tc20" data-tc="20">搭配中的枚举</span><span class="t tc2" data-tc="2">表内除法</span><span class="t tc20" data-tc="20">平面图形计数Ⅱ</span><span class="t tc1" data-tc="1">四则运算初步应用</span><span class="t tc25" data-tc="25">火柴棒与数</span><span class="t tc26" data-tc="26">图形的大小</span><span class="t tc16" data-tc="16">等量代换Ⅱ</span></td></tr>
 <tr><td class="term">二秋</td>
-<td class="orgtd col-ld"><span class="t tc13" data-tc="13">周期问题初步</span><span class="t tc7" data-tc="7">神奇的数串</span><span class="t tc17" data-tc="17">还原问题（二）</span><span class="t tc14" data-tc="14">平均数初步</span><span class="t tc20" data-tc="20">搭配问题（加乘原理）</span><span class="t tc29" data-tc="29">单双数</span><span class="t tc25" data-tc="25">操作类问题（翻杯子、倒油等）</span><span class="t tc26" data-tc="26">周长初步</span><span class="t tc20" data-tc="20">数图形</span><span class="t tc25" data-tc="25">蛇打七寸，题找关键</span><span class="t tc15" data-tc="15">年龄问题初步</span><span class="t tc20" data-tc="20">标数法（一）</span><span class="t tc27" data-tc="27">三视图</span><span class="t tc22" data-tc="22">逻辑推理</span><span class="t tc23" data-tc="23">幻方（初步）</span><span class="t tc25" data-tc="25">过河过桥</span></td>
+<td class="orgtd col-ld"><span class="t tc13 haspdf" data-tc="13" data-pdf="pdfs/乐读/二秋/第1讲：周期问题初步.pdf">周期问题初步</span><span class="t tc7 haspdf" data-tc="7" data-pdf="pdfs/乐读/二秋/第2讲：神奇的数串.pdf">神奇的数串</span><span class="t tc17 haspdf" data-tc="17" data-pdf="pdfs/乐读/二秋/第3讲：还原问题（二）.pdf">还原问题（二）</span><span class="t tc14 haspdf" data-tc="14" data-pdf="pdfs/乐读/二秋/第4讲：平均数初步.pdf">平均数初步</span><span class="t tc20 haspdf" data-tc="20" data-pdf="pdfs/乐读/二秋/第5讲：搭配问题（加乘原理）.pdf">搭配问题（加乘原理）</span><span class="t tc29 haspdf" data-tc="29" data-pdf="pdfs/乐读/二秋/第6讲：单双数.pdf">单双数</span><span class="t tc25 haspdf" data-tc="25" data-pdf="pdfs/乐读/二秋/第7讲：操作类问题（翻杯子、倒油等）.pdf">操作类问题（翻杯子、倒油等）</span><span class="t tc26 haspdf" data-tc="26" data-pdf="pdfs/乐读/二秋/第8讲：周长初步.pdf">周长初步</span><span class="t tc20" data-tc="20">数图形</span><span class="t tc25" data-tc="25">蛇打七寸，题找关键</span><span class="t tc15" data-tc="15">年龄问题初步</span><span class="t tc20" data-tc="20">标数法（一）</span><span class="t tc27" data-tc="27">三视图</span><span class="t tc22" data-tc="22">逻辑推理</span><span class="t tc23" data-tc="23">幻方（初步）</span><span class="t tc25" data-tc="25">过河过桥</span></td>
 <td class="orgtd col-ny"><span class="t tc1" data-tc="1">乘除法巧算</span><span class="t tc10" data-tc="10">鸡兔同笼初步</span><span class="t tc25" data-tc="25">一笔画与火柴棍问题</span><span class="t tc11" data-tc="11">盈亏问题初步</span><span class="t tc21" data-tc="21">抽屉原理初步</span><span class="t tc12" data-tc="12">植树问题</span><span class="t tc20" data-tc="20">枚举法进阶</span></td>
 <td class="orgtd col-x"><span class="t tc1" data-tc="1">乘法巧算</span><span class="t tc21" data-tc="21">容斥原理I</span><span class="t tc25" data-tc="25">促销中的数学问题</span><span class="t tc20" data-tc="20">加乘原理I</span><span class="t tc12" data-tc="12">植树问题II</span><span class="t tc1" data-tc="1">乘除法巧算</span><span class="t tc9" data-tc="9">差倍问题</span><span class="t tc10" data-tc="10">鸡兔同笼I</span><span class="t tc26" data-tc="26">面积</span><span class="t tc25" data-tc="25">火柴棒综合</span><span class="t tc16" data-tc="16">归一问题</span><span class="t tc20" data-tc="20">图形计数</span><span class="t tc14" data-tc="14">平均数</span><span class="t tc24" data-tc="24">统筹与最优化</span><span class="t tc15" data-tc="15">年龄问题</span></td>
 <td class="orgtd col-s"><span class="t tc7" data-tc="7">图形规律Ⅱ</span><span class="t tc2" data-tc="2">趣味数串速算</span><span class="t tc9" data-tc="9">认识倍</span><span class="t tc1" data-tc="1">加减巧算Ⅲ</span><span class="t tc21" data-tc="21">重叠问题</span><span class="t tc3" data-tc="3">乘法竖式Ⅰ</span><span class="t tc21" data-tc="21">最不利原则</span><span class="t tc7" data-tc="7">数列规律Ⅱ</span><span class="t tc25" data-tc="25">智巧趣题</span><span class="t tc17" data-tc="17">还原问题Ⅱ</span><span class="t tc4" data-tc="4">巧填算符Ⅱ</span><span class="t tc25" data-tc="25">排队问题Ⅱ</span><span class="t tc5" data-tc="5">带余除法Ⅰ</span><span class="t tc27" data-tc="27">图形分割</span><span class="t tc1" data-tc="1">四则运算综合应用</span></td></tr>
@@ -156,9 +157,28 @@ function pick(el){
     }
   }
 }
+function forceOn(n){
+  var lgs = document.querySelectorAll('.lg');
+  for(var i=0;i<lgs.length;i++){lgs[i].classList.remove('on');}
+  var tags = document.querySelectorAll('.t[data-tc]');
+  for(var j=0;j<tags.length;j++){tags[j].classList.remove('dim','sel');}
+  var btn = document.querySelector('.lg[data-tc="'+n+'"]');
+  if(btn){btn.classList.add('on');}
+  for(var k=0;k<tags.length;k++){
+    if(tags[k].getAttribute('data-tc')===n){tags[k].classList.add('sel');}
+    else{tags[k].classList.add('dim');}
+  }
+}
 document.addEventListener('click', function(e){
   var t = e.target.closest ? e.target.closest('.t[data-tc]') : null;
-  if(t){ pick(t); }
+  if(!t){return;}
+  var pdf = t.getAttribute('data-pdf');
+  if(pdf){
+    forceOn(t.getAttribute('data-tc'));
+    window.open(pdf,'_blank');
+  } else {
+    pick(t);
+  }
 });
 applyCols();
 </script>
