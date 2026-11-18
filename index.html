@@ -18,7 +18,7 @@ button.t{border:0;font-family:inherit;cursor:pointer}
 .tc15{background:#E64A19;color:#fff}.tc16{background:#D84315;color:#fff}.tc17{background:#C62828;color:#fff}
 .tc18{background:#FFB74D;color:#1a1a1a}.tc19{background:#EC407A;color:#fff}
 /* 计数·绿系 */
-.tc20{background:#2E7D32;color:#fff}.tc21{background:#43A047;color:#fff}
+.tc20{background:#2E7D32;color:#fff}.tc32{background:#1B5E20;color:#fff}.tc33{background:#00796B;color:#fff}.tc34{background:#C8E6C9;color:#1B5E20}.tc21{background:#43A047;color:#fff}
 /* 组合·紫系 */
 .tc22{background:#5E35B1;color:#fff}.tc23{background:#7E57C2;color:#fff}
 .tc24{background:#9575CD;color:#1a1a1a}.tc25{background:#B39DDB;color:#1a1a1a}
@@ -45,6 +45,8 @@ a.t{text-decoration:none}
 .nynote{margin-top:10px;font-size:11px;color:#888}
 .dim{filter:grayscale(1);opacity:.2}
 .sel{outline:2px solid #333;outline-offset:1px;box-shadow:0 0 5px rgba(0,0,0,.45)}
+.outline-panels .topic-match>th,.outline-panels .topic-match>td{background:#e6f1ff}
+.outline-panels summary.topic-match{background:#e6f1ff;border-radius:4px}
 .lg.on{outline:2px solid #333;outline-offset:1px;box-shadow:0 0 5px rgba(0,0,0,.4)}
 table{width:100%;border-collapse:collapse;margin-top:8px;min-width:420px}
 th,td{border:1px solid #d5d5d5;padding:6px;vertical-align:top;text-align:left}
@@ -70,7 +72,7 @@ th.term{z-index:4;background:#e9e9e9}
   table{min-width:400px}
 }
 
-.topic-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,32%);gap:10px;align-items:start;margin-bottom:6px}
+.topic-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(420px,46%);gap:10px;align-items:start;margin-bottom:6px}
 .outline-panels{display:grid;grid-template-columns:minmax(0,1fr);gap:6px;min-width:0}
 .exam-outline .catalog-table td:last-child{white-space:normal}
 .catalog-number{width:32px}
@@ -84,14 +86,14 @@ th.term{z-index:4;background:#e9e9e9}
 .catalog-match-heading{margin-top:6px}
 .exam-matches ul{display:flex;flex-wrap:wrap;gap:6px 18px;padding:0;margin:6px 0 0;list-style:none}
 .exam-outline{min-width:0;border:1px solid #d5e3f2;border-radius:6px;padding:7px;color:#263647;font-size:11px}
-.exam-header{display:flex;align-items:center;justify-content:flex-end;gap:6px;flex-wrap:wrap}
+.exam-header{display:flex;align-items:center;justify-content:space-between;gap:6px;margin-bottom:5px}
 .exam-outline>summary{cursor:pointer;padding:4px 5px;color:#145b94;font-size:14px;font-weight:bold}
 .exam-outline>summary:focus-visible{outline:2px solid #145b94;outline-offset:2px;border-radius:3px}
 .exam-outline[open]>summary{border-bottom:1px solid #e3e9ef;margin-bottom:5px}
-.exam-header nav{display:flex;gap:3px}
+.exam-header nav{display:flex;flex:none;gap:3px;white-space:nowrap}
 .exam-header nav a{color:#145b94;text-decoration:none;padding:3px 6px;border-radius:4px}
 .exam-header nav a[aria-current]{background:#145b94;color:#fff}
-.exam-summary{margin:5px 0;color:#455566}
+.exam-summary{margin:0;color:#455566}
 .outline-scroll{max-height:226px;overflow:auto;border:1px solid #d5e3f2;border-radius:4px}
 .exam-outline table{min-width:0;width:100%;font-size:11px;margin:0;border-spacing:0;border-collapse:separate}
 .exam-outline th,.exam-outline td{padding:3px 4px;text-align:left;vertical-align:middle;border:0;border-bottom:1px solid #e3e9ef}
@@ -103,19 +105,38 @@ th.term{z-index:4;background:#e9e9e9}
 .exam-outline tr:target,.exam-outline tr:focus{background:#fff3cc}
 /* Keep expanding outlines out of the course table's layout. */
 .topic-layout{position:relative}
-.outline-panels{position:absolute;inset:0 0 0 auto;width:max(320px,32%);align-content:start;overflow:auto;overscroll-behavior:contain;scrollbar-gutter:stable;overflow-anchor:none}
+.outline-panels{position:absolute;inset:0 0 0 auto;width:max(420px,46%);align-content:start;overflow:auto;overscroll-behavior:contain;scrollbar-gutter:stable;overflow-anchor:none}
 .outline-scroll{overscroll-behavior:contain}
 @media (max-width:860px){
   .topic-layout{grid-template-columns:minmax(0,1fr);padding-bottom:80px}
   .outline-panels{inset:auto 0 auto;top:calc(100% - 74px);width:auto;max-height:min(420px,65vh);z-index:5;background:#fff}
 }
 .outline-topic{display:inline-block;text-decoration:underline;padding:2px 5px;border-radius:3px}
+
+/* Each expanded outline packs its entries left to right in two columns. */
+.outline-scroll>table{display:block}
+.outline-scroll>table>thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+.outline-scroll>table>tbody{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:#e3e9ef}
+.outline-scroll>table>tbody>tr{display:grid;grid-template-columns:2ch minmax(0,1fr) minmax(0,45%);align-items:start;align-content:start;gap:2px 4px;min-width:0;padding:4px;background:#fff}
+.outline-scroll>table>tbody>tr>th,.outline-scroll>table>tbody>tr>td{min-width:0;padding:0;border:0;overflow-wrap:anywhere}
+.outline-scroll>table>tbody>tr>td:last-child{white-space:normal}
+#exam-outline .outline-scroll>table>tbody>tr{grid-template-columns:2ch minmax(0,1fr) minmax(0,43%) auto}
+#exam-outline .outline-scroll>table>tbody>tr>td:nth-child(3){grid-column:4;grid-row:1}
+#exam-outline .outline-scroll>table>tbody>tr>td:last-child{grid-column:3;grid-row:1}
+.outline-scroll .outline-topic{max-width:100%;box-sizing:border-box;overflow-wrap:anywhere}
+.outline-scroll>table>tbody>tr.catalog-group{display:block}
+.outline-scroll>table>tbody>tr.catalog-group>td{display:block}
+.outline-scroll>table>tbody>tr:target,.outline-scroll>table>tbody>tr:focus{background:#fff3cc}
+.catalog-topic-group summary .outline-topic{overflow-wrap:anywhere}
+.catalog-topic-group .catalog-table{table-layout:fixed}
+.catalog-topic-group .catalog-table td{overflow-wrap:anywhere}
+
 </style>
 </head>
 <body>
 <div style="font-family:Microsoft YaHei,sans-serif;padding:10px;">
 <h2 style="font-size:15px;margin:4px 0 6px;">四机构×8学期专题对照</h2>
-<div style="font-size:11px;color:#666;background:#eef4fb;border:1px solid #d5e3f2;border-radius:6px;padding:5px 8px;margin-bottom:6px;">手机端请左右滑动查看，左侧学期列与顶部机构名固定不动。可勾选机构列比较。黑色虚线下划线的课时（乐读二暑10讲、二秋第1-8讲）可打开课件PDF：按住 Ctrl（Mac 用 Command）再点击在后台新标签打开、本页不动；直接点击在前台打开。橙色虚线下划线的納约二暑、二秋课时，点击会弹出课件选择框（课堂笔记/课后作业/空白课前测），点文件名打开PDF。点击课时高亮对应专题，再点一次或点空白处恢复。· v2.24</div>
+<div style="font-size:11px;color:#666;background:#eef4fb;border:1px solid #d5e3f2;border-radius:6px;padding:5px 8px;margin-bottom:6px;">手机端请左右滑动查看，左侧学期列与顶部机构名固定不动。可勾选机构列比较。黑色虚线下划线的课时（乐读二暑10讲、二秋第1-8讲）可打开课件PDF：按住 Ctrl（Mac 用 Command）再点击在后台新标签打开、本页不动；直接点击在前台打开。橙色虚线下划线的納约二暑、二秋课时，点击会弹出课件选择框（课堂笔记/课后作业/空白课前测），点文件名打开PDF。点击课时高亮对应专题，再点一次或点空白处恢复。· v2.25 本地预览</div>
 <div class="topic-layout">
 <div class="topic-controls">
 <div id="course-topics" class="lggroup"><span class="lgname lgn-blue">计算</span>
@@ -123,7 +144,7 @@ th.term{z-index:4;background:#e9e9e9}
 <div class="lggroup"><span class="lgname lgn-red">应用</span>
 <button class="t tc9 lg" data-tc="9" id="topic-9">和差倍</button><button class="t tc10 lg" data-tc="10" id="topic-10">鸡兔同笼</button><button class="t tc11 lg" data-tc="11" id="topic-11">盈亏</button><button class="t tc12 lg" data-tc="12" id="topic-12">植树</button><button class="t tc13 lg" data-tc="13" id="topic-13">周期</button><button class="t tc14 lg" data-tc="14" id="topic-14">平均数</button><button class="t tc15 lg" data-tc="15" id="topic-15">年龄</button><button class="t tc16 lg" data-tc="16" id="topic-16">归一/等量代换/比例</button><button class="t tc17 lg" data-tc="17" id="topic-17">还原/倒推</button><button class="t tc18 lg" data-tc="18" id="topic-18">页码/日历/日期</button><button class="t tc19 lg" data-tc="19" id="topic-19">方阵</button></div>
 <div class="lggroup"><span class="lgname lgn-green">计数</span>
-<button class="t tc20 lg" data-tc="20" id="topic-20">计数/枚举/树形图/加乘/标数</button><button class="t tc21 lg" data-tc="21" id="topic-21">容斥/抽屉/最不利/重叠</button></div>
+<button class="t tc20 lg" data-tc="20" id="topic-20">枚举</button><button class="t tc32 lg" data-tc="32" id="topic-32">计数</button><button class="t tc33 lg" data-tc="33" id="topic-33">加乘</button><button class="t tc34 lg" data-tc="34" id="topic-34">标数/树形图</button><button class="t tc21 lg" data-tc="21" id="topic-21">容斥/抽屉/最不利/重叠</button></div>
 <div class="lggroup"><span class="lgname lgn-purple">组合</span>
 <button class="t tc22 lg" data-tc="22" id="topic-22">逻辑推理</button><button class="t tc23 lg" data-tc="23" id="topic-23">幻方/数阵图</button><button class="t tc24 lg" data-tc="24" id="topic-24">必胜/统筹/最值</button><button class="t tc25 lg" data-tc="25" id="topic-25">生活趣题/组合游戏</button></div>
 <div class="lggroup"><span class="lgname lgn-yellow">几何</span>
@@ -147,10 +168,11 @@ th.term{z-index:4;background:#e9e9e9}
 <details id="exam-outline" class="exam-outline">
 <summary>乐读考试大纲</summary>
 <header class="exam-header">
+<p id="exam-summary-2" class="exam-summary">15题 · 满分100分 · S班 34% · 超常目标班 46% · 集训队 20%</p>
+<p id="exam-summary-3" class="exam-summary" hidden>15题 · 满分100分 · S班 54% · 超常目标班 29% · 集训队 17%</p>
 <nav aria-label="考试大纲年级"><a href="#exam-grade-2" aria-current="true">二年级</a><a href="#exam-grade-3">三年级</a></nav>
 </header>
 <section id="exam-grade-2" aria-label="二年级" tabindex="-1">
-<p class="exam-summary">15题 · 满分100分 · S班 34% · 超常目标班 46% · 集训队 20%</p>
 <div class="outline-scroll" role="region" aria-label="二年级考点" tabindex="0">
 <table><thead><tr><th scope="col">题号</th><th scope="col">考察知识点</th><th scope="col">难度</th><th scope="col">课程对照专题</th></tr></thead>
 <tbody>
@@ -161,19 +183,18 @@ th.term{z-index:4;background:#e9e9e9}
 <tr id="exam-2-5" tabindex="-1" data-exam-topics="25"><th scope="row">5</th><td class="exam-point">称次品</td><td>2星</td><td><a class="outline-topic tc25" href="#topic-25" data-outline-topic="25">生活趣题/组合游戏</a> <small>相关专题</small></td></tr>
 <tr id="exam-2-6" tabindex="-1" data-exam-topics="7"><th scope="row">6</th><td class="exam-point">数列找规律</td><td>3星</td><td><a class="outline-topic tc7" href="#topic-7" data-outline-topic="7">数列/找规律</a></td></tr>
 <tr id="exam-2-7" tabindex="-1" data-exam-topics="14"><th scope="row">7</th><td class="exam-point">平均数的计算</td><td>2星</td><td><a class="outline-topic tc14" href="#topic-14" data-outline-topic="14">平均数</a></td></tr>
-<tr id="exam-2-8" tabindex="-1" data-exam-topics="20"><th scope="row">8</th><td class="exam-point">枚举法</td><td>3星</td><td><a class="outline-topic tc20" href="#topic-20" data-outline-topic="20">计数/枚举/树形图/加乘/标数</a></td></tr>
-<tr id="exam-2-9" tabindex="-1" data-exam-topics="20"><th scope="row">9</th><td class="exam-point">乘法原理</td><td>3星</td><td><a class="outline-topic tc20" href="#topic-20" data-outline-topic="20">计数/枚举/树形图/加乘/标数</a></td></tr>
+<tr id="exam-2-8" tabindex="-1" data-exam-topics="20"><th scope="row">8</th><td class="exam-point">枚举法</td><td>3星</td><td><a class="outline-topic tc20" href="#topic-20" data-outline-topic="20">枚举</a></td></tr>
+<tr id="exam-2-9" tabindex="-1" data-exam-topics="33"><th scope="row">9</th><td class="exam-point">乘法原理</td><td>3星</td><td><a class="outline-topic tc33" href="#topic-33" data-outline-topic="33">加乘</a></td></tr>
 <tr id="exam-2-10" tabindex="-1" data-exam-topics="13"><th scope="row">10</th><td class="exam-point">环形操作周期问题</td><td>4星</td><td><a class="outline-topic tc13" href="#topic-13" data-outline-topic="13">周期</a></td></tr>
-<tr id="exam-2-11" tabindex="-1" data-exam-topics="20"><th scope="row">11</th><td class="exam-point">数三角形个数</td><td>4星</td><td><a class="outline-topic tc20" href="#topic-20" data-outline-topic="20">计数/枚举/树形图/加乘/标数</a></td></tr>
+<tr id="exam-2-11" tabindex="-1" data-exam-topics="32"><th scope="row">11</th><td class="exam-point">数三角形个数</td><td>4星</td><td><a class="outline-topic tc32" href="#topic-32" data-outline-topic="32">计数</a></td></tr>
 <tr id="exam-2-12" tabindex="-1" data-exam-topics="5"><th scope="row">12</th><td class="exam-point">除法中的四两关系</td><td>2星</td><td><a class="outline-topic tc5" href="#topic-5" data-outline-topic="5">带余除法</a></td></tr>
 <tr id="exam-2-13" tabindex="-1" data-exam-topics="9"><th scope="row">13</th><td class="exam-point">移多补少变形</td><td>3星</td><td><a class="outline-topic tc9" href="#topic-9" data-outline-topic="9">和差倍</a> <small>相关专题</small></td></tr>
 <tr id="exam-2-14" tabindex="-1" data-exam-topics="10"><th scope="row">14</th><td class="exam-point">鸡兔同笼变形</td><td>4星</td><td><a class="outline-topic tc10" href="#topic-10" data-outline-topic="10">鸡兔同笼</a></td></tr>
-<tr id="exam-2-15" tabindex="-1" data-exam-topics="20"><th scope="row">15</th><td class="exam-point">组数中的枚举</td><td>5星</td><td><a class="outline-topic tc20" href="#topic-20" data-outline-topic="20">计数/枚举/树形图/加乘/标数</a></td></tr>
+<tr id="exam-2-15" tabindex="-1" data-exam-topics="20"><th scope="row">15</th><td class="exam-point">组数中的枚举</td><td>5星</td><td><a class="outline-topic tc20" href="#topic-20" data-outline-topic="20">枚举</a></td></tr>
 </tbody></table>
 </div>
 </section>
 <section id="exam-grade-3" aria-label="三年级" tabindex="-1">
-<p class="exam-summary">15题 · 满分100分 · S班 54% · 超常目标班 29% · 集训队 17%</p>
 <div class="outline-scroll" role="region" aria-label="三年级考点" tabindex="0">
 <table><thead><tr><th scope="col">题号</th><th scope="col">考察知识点</th><th scope="col">难度</th><th scope="col">课程对照专题</th></tr></thead>
 <tbody>
@@ -191,7 +212,7 @@ th.term{z-index:4;background:#e9e9e9}
 <tr id="exam-3-12" tabindex="-1" data-exam-topics="4"><th scope="row">12</th><td class="exam-point">乘除法数字谜</td><td>—</td><td><a class="outline-topic tc4" href="#topic-4" data-outline-topic="4">数字谜/填算符</a></td></tr>
 <tr id="exam-3-13" tabindex="-1" data-exam-topics="26"><th scope="row">13</th><td class="exam-point">巧求面积</td><td>—</td><td><a class="outline-topic tc26" href="#topic-26" data-outline-topic="26">周长面积</a></td></tr>
 <tr id="exam-3-14" tabindex="-1" data-exam-topics="8"><th scope="row">14</th><td class="exam-point">列方程解应用题</td><td>—</td><td><a class="outline-topic tc8" href="#topic-8" data-outline-topic="8">方程/代数</a></td></tr>
-<tr id="exam-3-15" tabindex="-1" data-exam-topics="20"><th scope="row">15</th><td class="exam-point">加乘原理进阶</td><td>—</td><td><a class="outline-topic tc20" href="#topic-20" data-outline-topic="20">计数/枚举/树形图/加乘/标数</a></td></tr>
+<tr id="exam-3-15" tabindex="-1" data-exam-topics="33"><th scope="row">15</th><td class="exam-point">加乘原理进阶</td><td>—</td><td><a class="outline-topic tc33" href="#topic-33" data-outline-topic="33">加乘</a></td></tr>
 </tbody></table>
 </div>
 </section>
@@ -205,75 +226,75 @@ th.term{z-index:4;background:#e9e9e9}
 <tbody>
 <tr class="catalog-group"><td colspan="3">
 <details class="catalog-topic-group">
-<summary><span class="outline-topic tc1">巧算/四则运算</span> <span class="catalog-count">3讲</span></summary>
+<summary data-catalog-summary-topic="1"><span class="outline-topic tc1">巧算/四则运算</span> <span class="catalog-count">3讲</span></summary>
 <table class="catalog-table" aria-label="巧算/四则运算讲次">
-<colgroup><col class="catalog-number"><col><col class="catalog-topic"></colgroup>
+<colgroup><col class="catalog-number"><col></colgroup>
 <tbody>
-<tr id="sandao-1" tabindex="-1" data-catalog-topics="1"><th scope="row">1</th><td class="catalog-lesson">四则运算一</td><td><a class="outline-topic tc1" href="#topic-1" data-outline-topic="1">巧算/四则运算</a></td></tr>
-<tr id="sandao-13" tabindex="-1" data-catalog-topics="1"><th scope="row">13</th><td class="catalog-lesson">四则运算二</td><td><a class="outline-topic tc1" href="#topic-1" data-outline-topic="1">巧算/四则运算</a></td></tr>
-<tr id="sandao-18" tabindex="-1" data-catalog-topics="1"><th scope="row">18</th><td class="catalog-lesson">四则运算三</td><td><a class="outline-topic tc1" href="#topic-1" data-outline-topic="1">巧算/四则运算</a></td></tr>
+<tr id="sandao-1" tabindex="-1" data-catalog-topics="1"><th scope="row">1</th><td class="catalog-lesson">四则运算一</td></tr>
+<tr id="sandao-13" tabindex="-1" data-catalog-topics="1"><th scope="row">13</th><td class="catalog-lesson">四则运算二</td></tr>
+<tr id="sandao-18" tabindex="-1" data-catalog-topics="1"><th scope="row">18</th><td class="catalog-lesson">四则运算三</td></tr>
 </tbody>
 </table>
 </details>
 </td></tr>
 <tr class="catalog-group"><td colspan="3">
 <details class="catalog-topic-group">
-<summary><span class="outline-topic tc25">生活趣题/组合游戏</span> <span class="catalog-count">3讲</span></summary>
+<summary data-catalog-summary-topic="25"><span class="outline-topic tc25">生活趣题/组合游戏</span> <span class="catalog-count">3讲</span></summary>
 <table class="catalog-table" aria-label="生活趣题/组合游戏讲次">
-<colgroup><col class="catalog-number"><col><col class="catalog-topic"></colgroup>
+<colgroup><col class="catalog-number"><col></colgroup>
 <tbody>
-<tr id="sandao-2" tabindex="-1" data-catalog-topics="25"><th scope="row">2</th><td class="catalog-lesson">基本应用题</td><td><a class="outline-topic tc25" href="#topic-25" data-outline-topic="25">生活趣题/组合游戏</a></td></tr>
-<tr id="sandao-12" tabindex="-1" data-catalog-topics="25"><th scope="row">12</th><td class="catalog-lesson">智巧趣题一</td><td><a class="outline-topic tc25" href="#topic-25" data-outline-topic="25">生活趣题/组合游戏</a></td></tr>
-<tr id="sandao-23" tabindex="-1" data-catalog-topics="25"><th scope="row">23</th><td class="catalog-lesson">智巧趣题二</td><td><a class="outline-topic tc25" href="#topic-25" data-outline-topic="25">生活趣题/组合游戏</a></td></tr>
+<tr id="sandao-2" tabindex="-1" data-catalog-topics="25"><th scope="row">2</th><td class="catalog-lesson">基本应用题</td></tr>
+<tr id="sandao-12" tabindex="-1" data-catalog-topics="25"><th scope="row">12</th><td class="catalog-lesson">智巧趣题一</td></tr>
+<tr id="sandao-23" tabindex="-1" data-catalog-topics="25"><th scope="row">23</th><td class="catalog-lesson">智巧趣题二</td></tr>
 </tbody>
 </table>
 </details>
 </td></tr>
 <tr class="catalog-group"><td colspan="3">
 <details class="catalog-topic-group">
-<summary><span class="outline-topic tc20">计数/枚举/树形图/加乘/标数</span> <span class="catalog-count">2讲</span></summary>
-<table class="catalog-table" aria-label="计数/枚举/树形图/加乘/标数讲次">
-<colgroup><col class="catalog-number"><col><col class="catalog-topic"></colgroup>
+<summary data-catalog-summary-topic="20"><span class="outline-topic tc20">枚举</span> <span class="catalog-count">2讲</span></summary>
+<table class="catalog-table" aria-label="枚举讲次">
+<colgroup><col class="catalog-number"><col></colgroup>
 <tbody>
-<tr id="sandao-3" tabindex="-1" data-catalog-topics="20"><th scope="row">3</th><td class="catalog-lesson">枚举法一</td><td><a class="outline-topic tc20" href="#topic-20" data-outline-topic="20">计数/枚举/树形图/加乘/标数</a></td></tr>
-<tr id="sandao-14" tabindex="-1" data-catalog-topics="20"><th scope="row">14</th><td class="catalog-lesson">枚举法二</td><td><a class="outline-topic tc20" href="#topic-20" data-outline-topic="20">计数/枚举/树形图/加乘/标数</a></td></tr>
+<tr id="sandao-3" tabindex="-1" data-catalog-topics="20"><th scope="row">3</th><td class="catalog-lesson">枚举法一</td></tr>
+<tr id="sandao-14" tabindex="-1" data-catalog-topics="20"><th scope="row">14</th><td class="catalog-lesson">枚举法二</td></tr>
 </tbody>
 </table>
 </details>
 </td></tr>
 <tr class="catalog-group"><td colspan="3">
 <details class="catalog-topic-group">
-<summary><span class="outline-topic tc7">数列/找规律</span> <span class="catalog-count">2讲</span></summary>
+<summary data-catalog-summary-topic="7"><span class="outline-topic tc7">数列/找规律</span> <span class="catalog-count">2讲</span></summary>
 <table class="catalog-table" aria-label="数列/找规律讲次">
-<colgroup><col class="catalog-number"><col><col class="catalog-topic"></colgroup>
+<colgroup><col class="catalog-number"><col></colgroup>
 <tbody>
-<tr id="sandao-4" tabindex="-1" data-catalog-topics="7"><th scope="row">4</th><td class="catalog-lesson">找规律</td><td><a class="outline-topic tc7" href="#topic-7" data-outline-topic="7">数列/找规律</a></td></tr>
-<tr id="sandao-9" tabindex="-1" data-catalog-topics="7"><th scope="row">9</th><td class="catalog-lesson">等差数列</td><td><a class="outline-topic tc7" href="#topic-7" data-outline-topic="7">数列/找规律</a></td></tr>
+<tr id="sandao-4" tabindex="-1" data-catalog-topics="7"><th scope="row">4</th><td class="catalog-lesson">找规律</td></tr>
+<tr id="sandao-9" tabindex="-1" data-catalog-topics="7"><th scope="row">9</th><td class="catalog-lesson">等差数列</td></tr>
 </tbody>
 </table>
 </details>
 </td></tr>
 <tr class="catalog-group"><td colspan="3">
 <details class="catalog-topic-group">
-<summary><span class="outline-topic tc9">和差倍</span> <span class="catalog-count">2讲</span></summary>
+<summary data-catalog-summary-topic="9"><span class="outline-topic tc9">和差倍</span> <span class="catalog-count">2讲</span></summary>
 <table class="catalog-table" aria-label="和差倍讲次">
-<colgroup><col class="catalog-number"><col><col class="catalog-topic"></colgroup>
+<colgroup><col class="catalog-number"><col></colgroup>
 <tbody>
-<tr id="sandao-5" tabindex="-1" data-catalog-topics="9"><th scope="row">5</th><td class="catalog-lesson">和差倍问题一</td><td><a class="outline-topic tc9" href="#topic-9" data-outline-topic="9">和差倍</a></td></tr>
-<tr id="sandao-15" tabindex="-1" data-catalog-topics="9"><th scope="row">15</th><td class="catalog-lesson">和差倍问题二</td><td><a class="outline-topic tc9" href="#topic-9" data-outline-topic="9">和差倍</a></td></tr>
+<tr id="sandao-5" tabindex="-1" data-catalog-topics="9"><th scope="row">5</th><td class="catalog-lesson">和差倍问题一</td></tr>
+<tr id="sandao-15" tabindex="-1" data-catalog-topics="9"><th scope="row">15</th><td class="catalog-lesson">和差倍问题二</td></tr>
 </tbody>
 </table>
 </details>
 </td></tr>
 <tr class="catalog-group"><td colspan="3">
 <details class="catalog-topic-group">
-<summary><span class="outline-topic tc4">数字谜/填算符</span> <span class="catalog-count">3讲</span></summary>
+<summary data-catalog-summary-topic="4"><span class="outline-topic tc4">数字谜/填算符</span> <span class="catalog-count">3讲</span> <a class="outline-topic tc3" href="#topic-3" data-outline-topic="3">竖式</a></summary>
 <table class="catalog-table" aria-label="数字谜/填算符讲次">
-<colgroup><col class="catalog-number"><col><col class="catalog-topic"></colgroup>
+<colgroup><col class="catalog-number"><col></colgroup>
 <tbody>
-<tr id="sandao-6" tabindex="-1" data-catalog-topics="3 4"><th scope="row">6</th><td class="catalog-lesson">简单加减法竖式</td><td><a class="outline-topic tc3" href="#topic-3" data-outline-topic="3">竖式</a> <a class="outline-topic tc4" href="#topic-4" data-outline-topic="4">数字谜/填算符</a></td></tr>
-<tr id="sandao-16" tabindex="-1" data-catalog-topics="3 4"><th scope="row">16</th><td class="catalog-lesson">简单乘除法竖式</td><td><a class="outline-topic tc3" href="#topic-3" data-outline-topic="3">竖式</a> <a class="outline-topic tc4" href="#topic-4" data-outline-topic="4">数字谜/填算符</a></td></tr>
-<tr id="sandao-20" tabindex="-1" data-catalog-topics="4"><th scope="row">20</th><td class="catalog-lesson">算符与数字</td><td><a class="outline-topic tc4" href="#topic-4" data-outline-topic="4">数字谜/填算符</a></td></tr>
+<tr id="sandao-6" tabindex="-1" data-catalog-topics="3 4"><th scope="row">6</th><td class="catalog-lesson">简单加减法竖式</td></tr>
+<tr id="sandao-16" tabindex="-1" data-catalog-topics="3 4"><th scope="row">16</th><td class="catalog-lesson">简单乘除法竖式</td></tr>
+<tr id="sandao-20" tabindex="-1" data-catalog-topics="4"><th scope="row">20</th><td class="catalog-lesson">算符与数字</td></tr>
 </tbody>
 </table>
 </details>
@@ -281,36 +302,36 @@ th.term{z-index:4;background:#e9e9e9}
 <tr id="sandao-7" tabindex="-1" data-catalog-topics="13"><th scope="row">7</th><td class="catalog-lesson">周期问题</td><td><a class="outline-topic tc13" href="#topic-13" data-outline-topic="13">周期</a></td></tr>
 <tr class="catalog-group"><td colspan="3">
 <details class="catalog-topic-group">
-<summary><span class="outline-topic tc10">鸡兔同笼</span> <span class="catalog-count">2讲</span></summary>
+<summary data-catalog-summary-topic="10"><span class="outline-topic tc10">鸡兔同笼</span> <span class="catalog-count">2讲</span></summary>
 <table class="catalog-table" aria-label="鸡兔同笼讲次">
-<colgroup><col class="catalog-number"><col><col class="catalog-topic"></colgroup>
+<colgroup><col class="catalog-number"><col></colgroup>
 <tbody>
-<tr id="sandao-8" tabindex="-1" data-catalog-topics="10"><th scope="row">8</th><td class="catalog-lesson">鸡兔同笼问题一</td><td><a class="outline-topic tc10" href="#topic-10" data-outline-topic="10">鸡兔同笼</a></td></tr>
-<tr id="sandao-17" tabindex="-1" data-catalog-topics="10"><th scope="row">17</th><td class="catalog-lesson">鸡兔同笼问题二</td><td><a class="outline-topic tc10" href="#topic-10" data-outline-topic="10">鸡兔同笼</a></td></tr>
+<tr id="sandao-8" tabindex="-1" data-catalog-topics="10"><th scope="row">8</th><td class="catalog-lesson">鸡兔同笼问题一</td></tr>
+<tr id="sandao-17" tabindex="-1" data-catalog-topics="10"><th scope="row">17</th><td class="catalog-lesson">鸡兔同笼问题二</td></tr>
 </tbody>
 </table>
 </details>
 </td></tr>
 <tr class="catalog-group"><td colspan="3">
 <details class="catalog-topic-group">
-<summary><span class="outline-topic tc27">图形基础</span> <span class="catalog-count">2讲</span></summary>
+<summary data-catalog-summary-topic="27"><span class="outline-topic tc27">图形基础</span> <span class="catalog-count">2讲</span></summary>
 <table class="catalog-table" aria-label="图形基础讲次">
-<colgroup><col class="catalog-number"><col><col class="catalog-topic"></colgroup>
+<colgroup><col class="catalog-number"><col></colgroup>
 <tbody>
-<tr id="sandao-10" tabindex="-1" data-catalog-topics="27"><th scope="row">10</th><td class="catalog-lesson">几何图形的认知</td><td><a class="outline-topic tc27" href="#topic-27" data-outline-topic="27">图形基础</a></td></tr>
-<tr id="sandao-22" tabindex="-1" data-catalog-topics="27"><th scope="row">22</th><td class="catalog-lesson">长度与角度的计算</td><td><a class="outline-topic tc27" href="#topic-27" data-outline-topic="27">图形基础</a></td></tr>
+<tr id="sandao-10" tabindex="-1" data-catalog-topics="27"><th scope="row">10</th><td class="catalog-lesson">几何图形的认知</td></tr>
+<tr id="sandao-22" tabindex="-1" data-catalog-topics="27"><th scope="row">22</th><td class="catalog-lesson">长度与角度的计算</td></tr>
 </tbody>
 </table>
 </details>
 </td></tr>
 <tr class="catalog-group"><td colspan="3">
 <details class="catalog-topic-group">
-<summary><span class="outline-topic tc11">盈亏</span> <span class="catalog-count">2讲</span></summary>
+<summary data-catalog-summary-topic="11"><span class="outline-topic tc11">盈亏</span> <span class="catalog-count">2讲</span></summary>
 <table class="catalog-table" aria-label="盈亏讲次">
-<colgroup><col class="catalog-number"><col><col class="catalog-topic"></colgroup>
+<colgroup><col class="catalog-number"><col></colgroup>
 <tbody>
-<tr id="sandao-11" tabindex="-1" data-catalog-topics="11"><th scope="row">11</th><td class="catalog-lesson">盈亏问题一</td><td><a class="outline-topic tc11" href="#topic-11" data-outline-topic="11">盈亏</a></td></tr>
-<tr id="sandao-21" tabindex="-1" data-catalog-topics="11"><th scope="row">21</th><td class="catalog-lesson">盈亏问题二</td><td><a class="outline-topic tc11" href="#topic-11" data-outline-topic="11">盈亏</a></td></tr>
+<tr id="sandao-11" tabindex="-1" data-catalog-topics="11"><th scope="row">11</th><td class="catalog-lesson">盈亏问题一</td></tr>
+<tr id="sandao-21" tabindex="-1" data-catalog-topics="11"><th scope="row">21</th><td class="catalog-lesson">盈亏问题二</td></tr>
 </tbody>
 </table>
 </details>
@@ -328,14 +349,14 @@ th.term{z-index:4;background:#e9e9e9}
 <thead><tr><th class="term">学期</th><th class="org col-ld" style="color:#1f6fb2">乐读·超目</th><th class="org col-ny" style="color:#d35400">納约目标班</th><th class="org col-x" style="color:#2e7d32">学而思X</th><th class="org col-s" style="color:#6a1b9a">学而思S+</th></tr></thead>
 <tbody>
 <tr><td class="term">二暑</td>
-<td class="orgtd col-ld"><a class="t tc1 haspdf" data-tc="1" data-pdf="pdfs/乐读/二暑/第1讲：速战速决.pdf" href="pdfs/乐读/二暑/第1讲：速战速决.pdf" target="_blank" rel="noopener">速战速决</a><a class="t tc7 haspdf" data-tc="7" data-pdf="pdfs/乐读/二暑/第2讲：找规律.pdf" href="pdfs/乐读/二暑/第2讲：找规律.pdf" target="_blank" rel="noopener">找规律（数、图 数图结合）</a><a class="t tc3 haspdf" data-tc="3" data-pdf="pdfs/乐读/二暑/第3讲：乘法竖式（一）.pdf" href="pdfs/乐读/二暑/第3讲：乘法竖式（一）.pdf" target="_blank" rel="noopener">乘法竖式（一位数×一位数）</a><a class="t tc5 haspdf" data-tc="5" data-pdf="pdfs/乐读/二暑/第4讲：带余数的除法.pdf" href="pdfs/乐读/二暑/第4讲：带余数的除法.pdf" target="_blank" rel="noopener">带余除法</a><a class="t tc9 haspdf" data-tc="9" data-pdf="pdfs/乐读/二暑/第5讲：和倍问题.pdf" href="pdfs/乐读/二暑/第5讲：和倍问题.pdf" target="_blank" rel="noopener">和倍问题</a><a class="t tc9 haspdf" data-tc="9" data-pdf="pdfs/乐读/二暑/第6讲：差倍问题.pdf" href="pdfs/乐读/二暑/第6讲：差倍问题.pdf" target="_blank" rel="noopener">差倍问题</a><a class="t tc20 haspdf" data-tc="20" data-pdf="pdfs/乐读/二暑/第7讲：数学老师的美术课.pdf" href="pdfs/乐读/二暑/第7讲：数学老师的美术课.pdf" target="_blank" rel="noopener">数学老师的美术课（树形图初步）</a><a class="t tc3 haspdf" data-tc="3" data-pdf="pdfs/乐读/二暑/第8讲：除法竖式（一）.pdf" href="pdfs/乐读/二暑/第8讲：除法竖式（一）.pdf" target="_blank" rel="noopener">除法竖式（一）（除数为一位数）</a><a class="t tc4 haspdf" data-tc="4" data-pdf="pdfs/乐读/二暑/第9讲：巧填算符.pdf" href="pdfs/乐读/二暑/第9讲：巧填算符.pdf" target="_blank" rel="noopener">巧填算符（乘法为主、24点）</a><a class="t tc25 haspdf" data-tc="25" data-pdf="pdfs/乐读/二暑/第10讲：华容道.pdf" href="pdfs/乐读/二暑/第10讲：华容道.pdf" target="_blank" rel="noopener">华容道</a></td>
+<td class="orgtd col-ld"><a class="t tc1 haspdf" data-tc="1" data-pdf="pdfs/乐读/二暑/第1讲：速战速决.pdf" href="pdfs/乐读/二暑/第1讲：速战速决.pdf" target="_blank" rel="noopener">速战速决</a><a class="t tc7 haspdf" data-tc="7" data-pdf="pdfs/乐读/二暑/第2讲：找规律.pdf" href="pdfs/乐读/二暑/第2讲：找规律.pdf" target="_blank" rel="noopener">找规律（数、图 数图结合）</a><a class="t tc3 haspdf" data-tc="3" data-pdf="pdfs/乐读/二暑/第3讲：乘法竖式（一）.pdf" href="pdfs/乐读/二暑/第3讲：乘法竖式（一）.pdf" target="_blank" rel="noopener">乘法竖式（一位数×一位数）</a><a class="t tc5 haspdf" data-tc="5" data-pdf="pdfs/乐读/二暑/第4讲：带余数的除法.pdf" href="pdfs/乐读/二暑/第4讲：带余数的除法.pdf" target="_blank" rel="noopener">带余除法</a><a class="t tc9 haspdf" data-tc="9" data-pdf="pdfs/乐读/二暑/第5讲：和倍问题.pdf" href="pdfs/乐读/二暑/第5讲：和倍问题.pdf" target="_blank" rel="noopener">和倍问题</a><a class="t tc9 haspdf" data-tc="9" data-pdf="pdfs/乐读/二暑/第6讲：差倍问题.pdf" href="pdfs/乐读/二暑/第6讲：差倍问题.pdf" target="_blank" rel="noopener">差倍问题</a><a class="t tc34 haspdf" data-tc="34" data-pdf="pdfs/乐读/二暑/第7讲：数学老师的美术课.pdf" href="pdfs/乐读/二暑/第7讲：数学老师的美术课.pdf" target="_blank" rel="noopener">数学老师的美术课（树形图初步）</a><a class="t tc3 haspdf" data-tc="3" data-pdf="pdfs/乐读/二暑/第8讲：除法竖式（一）.pdf" href="pdfs/乐读/二暑/第8讲：除法竖式（一）.pdf" target="_blank" rel="noopener">除法竖式（一）（除数为一位数）</a><a class="t tc4 haspdf" data-tc="4" data-pdf="pdfs/乐读/二暑/第9讲：巧填算符.pdf" href="pdfs/乐读/二暑/第9讲：巧填算符.pdf" target="_blank" rel="noopener">巧填算符（乘法为主、24点）</a><a class="t tc25 haspdf" data-tc="25" data-pdf="pdfs/乐读/二暑/第10讲：华容道.pdf" href="pdfs/乐读/二暑/第10讲：华容道.pdf" target="_blank" rel="noopener">华容道</a></td>
 <td class="orgtd col-ny"><span class="t tc1 haspop" data-tc="1" data-nybox="加减法巧算">加减法巧算</span><span class="t tc25 haspop" data-tc="25" data-nybox="基本应用题">基本应用题</span><span class="t tc16 haspop" data-tc="16" data-nybox="归一与等量代换">归一与等量代换</span><span class="t tc9 haspop" data-tc="9" data-nybox="和差倍初步">和差倍初步</span><span class="t tc7 haspop" data-tc="7" data-nybox="找规律">找规律</span><span class="t tc20 haspop" data-tc="20" data-nybox="枚举法初步">枚举法初步</span><span class="t tc4 haspop" data-tc="4" data-nybox="加减法数字谜">加减法数字谜</span></td>
-<td class="orgtd col-x"><span class="t tc20" data-tc="20">字典排列法</span><span class="t tc3" data-tc="3">乘法竖式</span><span class="t tc9" data-tc="9">和倍问题</span><span class="t tc3" data-tc="3">大数除法竖式</span><span class="t tc13" data-tc="13">周期问题II</span><span class="t tc25" data-tc="25">过河过桥</span><span class="t tc26" data-tc="26">周长问题I</span><span class="t tc20" data-tc="20">树形图</span><span class="t tc4" data-tc="4">加减法数字谜II</span><span class="t tc4" data-tc="4">巧填算符II</span></td>
-<td class="orgtd col-s"><span class="t tc20" data-tc="20">组数中的枚举</span><span class="t tc2" data-tc="2">表内乘法</span><span class="t tc20" data-tc="20">巧用乘法数图形</span><span class="t tc20" data-tc="20">搭配中的枚举</span><span class="t tc2" data-tc="2">表内除法</span><span class="t tc20" data-tc="20">平面图形计数Ⅱ</span><span class="t tc1" data-tc="1">四则运算初步应用</span><span class="t tc25" data-tc="25">火柴棒与数</span><span class="t tc26" data-tc="26">图形的大小</span><span class="t tc16" data-tc="16">等量代换Ⅱ</span></td></tr>
+<td class="orgtd col-x"><span class="t tc20" data-tc="20">字典排列法</span><span class="t tc3" data-tc="3">乘法竖式</span><span class="t tc9" data-tc="9">和倍问题</span><span class="t tc3" data-tc="3">大数除法竖式</span><span class="t tc13" data-tc="13">周期问题II</span><span class="t tc25" data-tc="25">过河过桥</span><span class="t tc26" data-tc="26">周长问题I</span><span class="t tc34" data-tc="34">树形图</span><span class="t tc4" data-tc="4">加减法数字谜II</span><span class="t tc4" data-tc="4">巧填算符II</span></td>
+<td class="orgtd col-s"><span class="t tc20" data-tc="20">组数中的枚举</span><span class="t tc2" data-tc="2">表内乘法</span><span class="t tc32" data-tc="32">巧用乘法数图形</span><span class="t tc20" data-tc="20">搭配中的枚举</span><span class="t tc2" data-tc="2">表内除法</span><span class="t tc32" data-tc="32">平面图形计数Ⅱ</span><span class="t tc1" data-tc="1">四则运算初步应用</span><span class="t tc25" data-tc="25">火柴棒与数</span><span class="t tc26" data-tc="26">图形的大小</span><span class="t tc16" data-tc="16">等量代换Ⅱ</span></td></tr>
 <tr><td class="term">二秋</td>
-<td class="orgtd col-ld"><a class="t tc13 haspdf" data-tc="13" data-pdf="pdfs/乐读/二秋/第1讲：周期问题初步.pdf" href="pdfs/乐读/二秋/第1讲：周期问题初步.pdf" target="_blank" rel="noopener">周期问题初步</a><a class="t tc7 haspdf" data-tc="7" data-pdf="pdfs/乐读/二秋/第2讲：神奇的数串.pdf" href="pdfs/乐读/二秋/第2讲：神奇的数串.pdf" target="_blank" rel="noopener">神奇的数串</a><a class="t tc17 haspdf" data-tc="17" data-pdf="pdfs/乐读/二秋/第3讲：还原问题（二）.pdf" href="pdfs/乐读/二秋/第3讲：还原问题（二）.pdf" target="_blank" rel="noopener">还原问题（二）</a><a class="t tc14 haspdf" data-tc="14" data-pdf="pdfs/乐读/二秋/第4讲：平均数初步.pdf" href="pdfs/乐读/二秋/第4讲：平均数初步.pdf" target="_blank" rel="noopener">平均数初步</a><a class="t tc20 haspdf" data-tc="20" data-pdf="pdfs/乐读/二秋/第5讲：搭配问题（加乘原理）.pdf" href="pdfs/乐读/二秋/第5讲：搭配问题（加乘原理）.pdf" target="_blank" rel="noopener">搭配问题（加乘原理）</a><a class="t tc29 haspdf" data-tc="29" data-pdf="pdfs/乐读/二秋/第6讲：单双数.pdf" href="pdfs/乐读/二秋/第6讲：单双数.pdf" target="_blank" rel="noopener">单双数</a><a class="t tc25 haspdf" data-tc="25" data-pdf="pdfs/乐读/二秋/第7讲：操作类问题（翻杯子、倒油等）.pdf" href="pdfs/乐读/二秋/第7讲：操作类问题（翻杯子、倒油等）.pdf" target="_blank" rel="noopener">操作类问题（翻杯子、倒油等）</a><a class="t tc26 haspdf" data-tc="26" data-pdf="pdfs/乐读/二秋/第8讲：周长初步.pdf" href="pdfs/乐读/二秋/第8讲：周长初步.pdf" target="_blank" rel="noopener">周长初步</a><span class="t tc20" data-tc="20">数图形</span><span class="t tc25" data-tc="25">蛇打七寸，题找关键</span><span class="t tc15" data-tc="15">年龄问题初步</span><span class="t tc20" data-tc="20">标数法（一）</span><span class="t tc27" data-tc="27">三视图</span><span class="t tc22" data-tc="22">逻辑推理</span><span class="t tc23" data-tc="23">幻方（初步）</span><span class="t tc25" data-tc="25">过河过桥</span></td>
+<td class="orgtd col-ld"><a class="t tc13 haspdf" data-tc="13" data-pdf="pdfs/乐读/二秋/第1讲：周期问题初步.pdf" href="pdfs/乐读/二秋/第1讲：周期问题初步.pdf" target="_blank" rel="noopener">周期问题初步</a><a class="t tc7 haspdf" data-tc="7" data-pdf="pdfs/乐读/二秋/第2讲：神奇的数串.pdf" href="pdfs/乐读/二秋/第2讲：神奇的数串.pdf" target="_blank" rel="noopener">神奇的数串</a><a class="t tc17 haspdf" data-tc="17" data-pdf="pdfs/乐读/二秋/第3讲：还原问题（二）.pdf" href="pdfs/乐读/二秋/第3讲：还原问题（二）.pdf" target="_blank" rel="noopener">还原问题（二）</a><a class="t tc14 haspdf" data-tc="14" data-pdf="pdfs/乐读/二秋/第4讲：平均数初步.pdf" href="pdfs/乐读/二秋/第4讲：平均数初步.pdf" target="_blank" rel="noopener">平均数初步</a><a class="t tc33 haspdf" data-tc="33" data-pdf="pdfs/乐读/二秋/第5讲：搭配问题（加乘原理）.pdf" href="pdfs/乐读/二秋/第5讲：搭配问题（加乘原理）.pdf" target="_blank" rel="noopener">搭配问题（加乘原理）</a><a class="t tc29 haspdf" data-tc="29" data-pdf="pdfs/乐读/二秋/第6讲：单双数.pdf" href="pdfs/乐读/二秋/第6讲：单双数.pdf" target="_blank" rel="noopener">单双数</a><a class="t tc25 haspdf" data-tc="25" data-pdf="pdfs/乐读/二秋/第7讲：操作类问题（翻杯子、倒油等）.pdf" href="pdfs/乐读/二秋/第7讲：操作类问题（翻杯子、倒油等）.pdf" target="_blank" rel="noopener">操作类问题（翻杯子、倒油等）</a><a class="t tc26 haspdf" data-tc="26" data-pdf="pdfs/乐读/二秋/第8讲：周长初步.pdf" href="pdfs/乐读/二秋/第8讲：周长初步.pdf" target="_blank" rel="noopener">周长初步</a><span class="t tc32" data-tc="32">数图形</span><span class="t tc25" data-tc="25">蛇打七寸，题找关键</span><span class="t tc15" data-tc="15">年龄问题初步</span><span class="t tc34" data-tc="34">标数法（一）</span><span class="t tc27" data-tc="27">三视图</span><span class="t tc22" data-tc="22">逻辑推理</span><span class="t tc23" data-tc="23">幻方（初步）</span><span class="t tc25" data-tc="25">过河过桥</span></td>
 <td class="orgtd col-ny"><span class="t tc1 haspop" data-tc="1" data-nybox="乘除法巧算">乘除法巧算</span><span class="t tc10 haspop" data-tc="10" data-nybox="鸡兔同笼初步">鸡兔同笼初步</span><span class="t tc25 haspop" data-tc="25" data-nybox="一笔画与火柴棍问题">一笔画与火柴棍问题</span><span class="t tc11 haspop" data-tc="11" data-nybox="盈亏问题初步">盈亏问题初步</span><span class="t tc21 haspop" data-tc="21" data-nybox="抽屉原理初步">抽屉原理初步</span><span class="t tc12" data-tc="12">植树问题</span><span class="t tc20" data-tc="20">枚举法进阶</span></td>
-<td class="orgtd col-x"><span class="t tc1" data-tc="1">乘法巧算</span><span class="t tc21" data-tc="21">容斥原理I</span><span class="t tc25" data-tc="25">促销中的数学问题</span><span class="t tc20" data-tc="20">加乘原理I</span><span class="t tc12" data-tc="12">植树问题II</span><span class="t tc1" data-tc="1">乘除法巧算</span><span class="t tc9" data-tc="9">差倍问题</span><span class="t tc10" data-tc="10">鸡兔同笼I</span><span class="t tc26" data-tc="26">面积</span><span class="t tc25" data-tc="25">火柴棒综合</span><span class="t tc16" data-tc="16">归一问题</span><span class="t tc20" data-tc="20">图形计数</span><span class="t tc14" data-tc="14">平均数</span><span class="t tc24" data-tc="24">统筹与最优化</span><span class="t tc15" data-tc="15">年龄问题</span></td>
+<td class="orgtd col-x"><span class="t tc1" data-tc="1">乘法巧算</span><span class="t tc21" data-tc="21">容斥原理I</span><span class="t tc25" data-tc="25">促销中的数学问题</span><span class="t tc33" data-tc="33">加乘原理I</span><span class="t tc12" data-tc="12">植树问题II</span><span class="t tc1" data-tc="1">乘除法巧算</span><span class="t tc9" data-tc="9">差倍问题</span><span class="t tc10" data-tc="10">鸡兔同笼I</span><span class="t tc26" data-tc="26">面积</span><span class="t tc25" data-tc="25">火柴棒综合</span><span class="t tc16" data-tc="16">归一问题</span><span class="t tc32" data-tc="32">图形计数</span><span class="t tc14" data-tc="14">平均数</span><span class="t tc24" data-tc="24">统筹与最优化</span><span class="t tc15" data-tc="15">年龄问题</span></td>
 <td class="orgtd col-s"><span class="t tc7" data-tc="7">图形规律Ⅱ</span><span class="t tc2" data-tc="2">趣味数串速算</span><span class="t tc9" data-tc="9">认识倍</span><span class="t tc1" data-tc="1">加减巧算Ⅲ</span><span class="t tc21" data-tc="21">重叠问题</span><span class="t tc3" data-tc="3">乘法竖式Ⅰ</span><span class="t tc21" data-tc="21">最不利原则</span><span class="t tc7" data-tc="7">数列规律Ⅱ</span><span class="t tc25" data-tc="25">智巧趣题</span><span class="t tc17" data-tc="17">还原问题Ⅱ</span><span class="t tc4" data-tc="4">巧填算符Ⅱ</span><span class="t tc25" data-tc="25">排队问题Ⅱ</span><span class="t tc5" data-tc="5">带余除法Ⅰ</span><span class="t tc27" data-tc="27">图形分割</span><span class="t tc1" data-tc="1">四则运算综合应用</span></td></tr>
 <tr><td class="term">二冬</td>
 <td class="orgtd col-ld"><span class="t tc3" data-tc="3">乘法竖式（二）（多位数×多位数）</span><span class="t tc20" data-tc="20">字典排列法</span><span class="t tc24" data-tc="24">必胜策略</span><span class="t tc16" data-tc="16">移多补少进阶</span><span class="t tc3" data-tc="3">除法竖式（二）（除数是多位数）</span><span class="t tc26" data-tc="26">巧求周长</span><span class="t tc25" data-tc="25">统计</span></td>
@@ -344,19 +365,19 @@ th.term{z-index:4;background:#e9e9e9}
 <td class="orgtd col-s"><span class="t tc9" data-tc="9">倍的认识</span><span class="t tc27" data-tc="27">立体方块染色</span><span class="t tc3" data-tc="3">除法竖式</span><span class="t tc18" data-tc="18">页码问题Ⅰ</span><span class="t tc20" data-tc="20">枚举法综合</span><span class="t tc2" data-tc="2">变加为乘速算</span><span class="t tc13" data-tc="13">周期问题</span></td></tr>
 <tr><td class="term">二春</td>
 <td class="orgtd col-ld"><span class="t tc9" data-tc="9">和差倍综合</span><span class="t tc25" data-tc="25">多笔画</span><span class="t tc1" data-tc="1">乘法巧算</span><span class="t tc1" data-tc="1">除法巧算</span><span class="t tc15" data-tc="15">年龄问题进阶</span><span class="t tc16" data-tc="16">归一问题</span><span class="t tc13" data-tc="13">周期问题进阶</span><span class="t tc25" data-tc="25">错中求对</span><span class="t tc12" data-tc="12">植树问题进阶</span><span class="t tc1" data-tc="1">大数的认识及计算</span><span class="t tc11" data-tc="11">盈亏问题</span><span class="t tc6" data-tc="6">分数初识</span><span class="t tc21" data-tc="21">容斥原理初步</span><span class="t tc18" data-tc="18">日期问题</span><span class="t tc10" data-tc="10">鸡兔同笼初步</span><span class="t tc25" data-tc="25">数学游戏</span></td>
-<td class="orgtd col-ny"><span class="t tc1" data-tc="1">整数四则运算综合</span><span class="t tc8" data-tc="8">方程初步</span><span class="t tc10" data-tc="10">鸡兔同笼进阶</span><span class="t tc11" data-tc="11">盈亏问题进阶</span><span class="t tc19" data-tc="19">方阵问题</span><span class="t tc17" data-tc="17">还原问题</span><span class="t tc20" data-tc="20">几何计数初步</span><span class="t tc15" data-tc="15">年龄问题</span><span class="t tc26" data-tc="26">长度与角度</span><span class="t tc30" data-tc="30">行程问题初步</span></td>
+<td class="orgtd col-ny"><span class="t tc1" data-tc="1">整数四则运算综合</span><span class="t tc8" data-tc="8">方程初步</span><span class="t tc10" data-tc="10">鸡兔同笼进阶</span><span class="t tc11" data-tc="11">盈亏问题进阶</span><span class="t tc19" data-tc="19">方阵问题</span><span class="t tc17" data-tc="17">还原问题</span><span class="t tc32" data-tc="32">几何计数初步</span><span class="t tc15" data-tc="15">年龄问题</span><span class="t tc26" data-tc="26">长度与角度</span><span class="t tc30" data-tc="30">行程问题初步</span></td>
 <td class="orgtd col-x"><span class="t tc25" data-tc="25">最短路线问题</span><span class="t tc25" data-tc="25">点线排布</span><span class="t tc22" data-tc="22">逻辑推理</span><span class="t tc20" data-tc="20">数的拆分Ⅱ</span><span class="t tc27" data-tc="27">图形分割</span><span class="t tc5" data-tc="5">带余除法Ⅰ</span><span class="t tc25" data-tc="25">翻杯子</span><span class="t tc11" data-tc="11">盈亏问题</span><span class="t tc27" data-tc="27">角度初识</span><span class="t tc23" data-tc="23">幻方</span><span class="t tc25" data-tc="25">多笔画问题</span><span class="t tc8" data-tc="8">一元一次方程初识</span><span class="t tc8" data-tc="8">列方程解应用题</span><span class="t tc24" data-tc="24">必胜策略</span><span class="t tc25" data-tc="25">数回</span></td>
-<td class="orgtd col-s"><span class="t tc16" data-tc="16">等量代换</span><span class="t tc25" data-tc="25">分段计价</span><span class="t tc25" data-tc="25">过河过桥问题</span><span class="t tc21" data-tc="21">重叠问题</span><span class="t tc12" data-tc="12">植树问题</span><span class="t tc22" data-tc="22">逻辑推理</span><span class="t tc16" data-tc="16">移多补少</span><span class="t tc23" data-tc="23">数阵图</span><span class="t tc9" data-tc="9">和差问题</span><span class="t tc27" data-tc="27">多角度观察</span><span class="t tc15" data-tc="15">年龄问题</span><span class="t tc25" data-tc="25">蜗牛爬井</span><span class="t tc25" data-tc="25">线段图综合应用</span><span class="t tc20" data-tc="20">加乘原理</span><span class="t tc24" data-tc="24">必胜策略</span></td></tr>
+<td class="orgtd col-s"><span class="t tc16" data-tc="16">等量代换</span><span class="t tc25" data-tc="25">分段计价</span><span class="t tc25" data-tc="25">过河过桥问题</span><span class="t tc21" data-tc="21">重叠问题</span><span class="t tc12" data-tc="12">植树问题</span><span class="t tc22" data-tc="22">逻辑推理</span><span class="t tc16" data-tc="16">移多补少</span><span class="t tc23" data-tc="23">数阵图</span><span class="t tc9" data-tc="9">和差问题</span><span class="t tc27" data-tc="27">多角度观察</span><span class="t tc15" data-tc="15">年龄问题</span><span class="t tc25" data-tc="25">蜗牛爬井</span><span class="t tc25" data-tc="25">线段图综合应用</span><span class="t tc33" data-tc="33">加乘原理</span><span class="t tc24" data-tc="24">必胜策略</span></td></tr>
 <tr><td class="term">三暑</td>
-<td class="orgtd col-ld"><span class="t tc27" data-tc="27">线与角</span><span class="t tc26" data-tc="26">长正方形面积</span><span class="t tc7" data-tc="7">等差数列初步</span><span class="t tc20" data-tc="20">树形图综合</span><span class="t tc8" data-tc="8">代数式化简，字母表示数</span><span class="t tc8" data-tc="8">一元一次方程</span><span class="t tc8" data-tc="8">列方程解应用题</span><span class="t tc18" data-tc="18">页码问题</span><span class="t tc22" data-tc="22">逻辑推理初步</span><span class="t tc25" data-tc="25">数独</span></td>
-<td class="orgtd col-ny"><span class="t tc1" data-tc="1">定义新运算</span><span class="t tc14" data-tc="14">平均数问题</span><span class="t tc20" data-tc="20">加乘原理</span><span class="t tc26" data-tc="26">经典图形面积公式</span><span class="t tc30" data-tc="30">火车过桥问题</span><span class="t tc8" data-tc="8">方程与方程组</span><span class="t tc22" data-tc="22">逻辑推理初步</span><span class="t tc31" data-tc="31">期末检测</span></td>
-<td class="orgtd col-x"><span class="t tc1" data-tc="1">整数巧算</span><span class="t tc26" data-tc="26">巧求面积</span><span class="t tc20" data-tc="20">树形图</span><span class="t tc6" data-tc="6">小数Ⅰ</span><span class="t tc6" data-tc="6">小数Ⅱ</span><span class="t tc10" data-tc="10">鸡兔同笼Ⅱ</span><span class="t tc4" data-tc="4">加减法数字谜</span><span class="t tc20" data-tc="20">加乘原理Ⅱ</span><span class="t tc9" data-tc="9">和差倍综合</span><span class="t tc23" data-tc="23">数阵图</span></td>
+<td class="orgtd col-ld"><span class="t tc27" data-tc="27">线与角</span><span class="t tc26" data-tc="26">长正方形面积</span><span class="t tc7" data-tc="7">等差数列初步</span><span class="t tc34" data-tc="34">树形图综合</span><span class="t tc8" data-tc="8">代数式化简，字母表示数</span><span class="t tc8" data-tc="8">一元一次方程</span><span class="t tc8" data-tc="8">列方程解应用题</span><span class="t tc18" data-tc="18">页码问题</span><span class="t tc22" data-tc="22">逻辑推理初步</span><span class="t tc25" data-tc="25">数独</span></td>
+<td class="orgtd col-ny"><span class="t tc1" data-tc="1">定义新运算</span><span class="t tc14" data-tc="14">平均数问题</span><span class="t tc33" data-tc="33">加乘原理</span><span class="t tc26" data-tc="26">经典图形面积公式</span><span class="t tc30" data-tc="30">火车过桥问题</span><span class="t tc8" data-tc="8">方程与方程组</span><span class="t tc22" data-tc="22">逻辑推理初步</span><span class="t tc31" data-tc="31">期末检测</span></td>
+<td class="orgtd col-x"><span class="t tc1" data-tc="1">整数巧算</span><span class="t tc26" data-tc="26">巧求面积</span><span class="t tc34" data-tc="34">树形图</span><span class="t tc6" data-tc="6">小数Ⅰ</span><span class="t tc6" data-tc="6">小数Ⅱ</span><span class="t tc10" data-tc="10">鸡兔同笼Ⅱ</span><span class="t tc4" data-tc="4">加减法数字谜</span><span class="t tc33" data-tc="33">加乘原理Ⅱ</span><span class="t tc9" data-tc="9">和差倍综合</span><span class="t tc23" data-tc="23">数阵图</span></td>
 <td class="orgtd col-s"><span class="t tc3" data-tc="3">乘法竖式</span><span class="t tc26" data-tc="26">巧求周长</span><span class="t tc4" data-tc="4">加减法数字谜</span><span class="t tc25" data-tc="25">多笔画游戏</span><span class="t tc20" data-tc="20">字典排列法</span><span class="t tc3" data-tc="3">除法竖式</span><span class="t tc16" data-tc="16">归一问题</span><span class="t tc14" data-tc="14">平均数问题Ⅰ</span><span class="t tc6" data-tc="6">分数的认识</span><span class="t tc17" data-tc="17">倒推与图示</span></td></tr>
 <tr><td class="term">三秋</td>
-<td class="orgtd col-ld"><span class="t tc5" data-tc="5">带余数的除法进阶</span><span class="t tc20" data-tc="20">加乘原理初步</span><span class="t tc20" data-tc="20">标数法（二）</span><span class="t tc19" data-tc="19">方阵问题</span><span class="t tc27" data-tc="27">平行四边形和梯形</span><span class="t tc26" data-tc="26">巧求面积</span><span class="t tc20" data-tc="20">平面图形计数初步</span><span class="t tc1" data-tc="1">定义新运算</span><span class="t tc4" data-tc="4">乘除法数字谜</span><span class="t tc29" data-tc="29">奇偶性构造与论证</span><span class="t tc10" data-tc="10">鸡兔同笼进阶</span><span class="t tc24" data-tc="24">统筹与最优化</span><span class="t tc23" data-tc="23">幻方</span><span class="t tc6" data-tc="6">乘方</span><span class="t tc20" data-tc="20">递推计数初步</span><span class="t tc25" data-tc="25">体育比赛中的数学</span></td>
-<td class="orgtd col-ny"><span class="t tc6" data-tc="6">多位数与小数计算</span><span class="t tc23" data-tc="23">幻方与数阵图</span><span class="t tc4" data-tc="4">复杂竖式数字谜</span><span class="t tc4" data-tc="4">横式数字谜</span><span class="t tc27" data-tc="27">几何图形剪拼</span><span class="t tc28" data-tc="28">弦图与勾股定理</span><span class="t tc30" data-tc="30">多次往返相遇追及</span><span class="t tc20" data-tc="20">排列组合初步</span><span class="t tc24" data-tc="24">统筹与对策</span><span class="t tc31" data-tc="31">期末检测</span></td>
-<td class="orgtd col-x"><span class="t tc6" data-tc="6">分数Ⅰ</span><span class="t tc6" data-tc="6">分数Ⅱ</span><span class="t tc7" data-tc="7">等差数列Ⅱ</span><span class="t tc24" data-tc="24">最值问题Ⅰ</span><span class="t tc20" data-tc="20">标数法Ⅱ</span><span class="t tc20" data-tc="20">图形计数</span><span class="t tc29" data-tc="29">奇偶性构造论证</span><span class="t tc4" data-tc="4">乘除法数字谜</span><span class="t tc14" data-tc="14">平均数Ⅱ</span><span class="t tc6" data-tc="6">乘方与公式</span><span class="t tc8" data-tc="8">解方程组</span><span class="t tc8" data-tc="8">列方程(组)解应用题</span><span class="t tc29" data-tc="29">余数性质</span><span class="t tc29" data-tc="29">整除特征Ⅰ</span><span class="t tc29" data-tc="29">整除特征Ⅱ</span></td>
-<td class="orgtd col-s"><span class="t tc1" data-tc="1">乘法巧算</span><span class="t tc1" data-tc="1">除法巧算</span><span class="t tc27" data-tc="27">线与角</span><span class="t tc12" data-tc="12">植树问题Ⅱ</span><span class="t tc9" data-tc="9">和差倍问题Ⅰ</span><span class="t tc13" data-tc="13">周期问题Ⅱ</span><span class="t tc22" data-tc="22">逻辑推理综合Ⅰ</span><span class="t tc6" data-tc="6">小数的认识与加减</span><span class="t tc20" data-tc="20">从树形图谈起</span><span class="t tc29" data-tc="29">奇数与偶数</span><span class="t tc18" data-tc="18">日历问题</span><span class="t tc20" data-tc="20">图形计数Ⅰ</span><span class="t tc25" data-tc="25">统计问题</span><span class="t tc26" data-tc="26">长方形与正方形</span><span class="t tc11" data-tc="11">盈亏问题</span></td></tr>
+<td class="orgtd col-ld"><span class="t tc5" data-tc="5">带余数的除法进阶</span><span class="t tc33" data-tc="33">加乘原理初步</span><span class="t tc34" data-tc="34">标数法（二）</span><span class="t tc19" data-tc="19">方阵问题</span><span class="t tc27" data-tc="27">平行四边形和梯形</span><span class="t tc26" data-tc="26">巧求面积</span><span class="t tc32" data-tc="32">平面图形计数初步</span><span class="t tc1" data-tc="1">定义新运算</span><span class="t tc4" data-tc="4">乘除法数字谜</span><span class="t tc29" data-tc="29">奇偶性构造与论证</span><span class="t tc10" data-tc="10">鸡兔同笼进阶</span><span class="t tc24" data-tc="24">统筹与最优化</span><span class="t tc23" data-tc="23">幻方</span><span class="t tc6" data-tc="6">乘方</span><span class="t tc32" data-tc="32">递推计数初步</span><span class="t tc25" data-tc="25">体育比赛中的数学</span></td>
+<td class="orgtd col-ny"><span class="t tc6" data-tc="6">多位数与小数计算</span><span class="t tc23" data-tc="23">幻方与数阵图</span><span class="t tc4" data-tc="4">复杂竖式数字谜</span><span class="t tc4" data-tc="4">横式数字谜</span><span class="t tc27" data-tc="27">几何图形剪拼</span><span class="t tc28" data-tc="28">弦图与勾股定理</span><span class="t tc30" data-tc="30">多次往返相遇追及</span><span class="t tc32" data-tc="32">排列组合初步</span><span class="t tc24" data-tc="24">统筹与对策</span><span class="t tc31" data-tc="31">期末检测</span></td>
+<td class="orgtd col-x"><span class="t tc6" data-tc="6">分数Ⅰ</span><span class="t tc6" data-tc="6">分数Ⅱ</span><span class="t tc7" data-tc="7">等差数列Ⅱ</span><span class="t tc24" data-tc="24">最值问题Ⅰ</span><span class="t tc34" data-tc="34">标数法Ⅱ</span><span class="t tc32" data-tc="32">图形计数</span><span class="t tc29" data-tc="29">奇偶性构造论证</span><span class="t tc4" data-tc="4">乘除法数字谜</span><span class="t tc14" data-tc="14">平均数Ⅱ</span><span class="t tc6" data-tc="6">乘方与公式</span><span class="t tc8" data-tc="8">解方程组</span><span class="t tc8" data-tc="8">列方程(组)解应用题</span><span class="t tc29" data-tc="29">余数性质</span><span class="t tc29" data-tc="29">整除特征Ⅰ</span><span class="t tc29" data-tc="29">整除特征Ⅱ</span></td>
+<td class="orgtd col-s"><span class="t tc1" data-tc="1">乘法巧算</span><span class="t tc1" data-tc="1">除法巧算</span><span class="t tc27" data-tc="27">线与角</span><span class="t tc12" data-tc="12">植树问题Ⅱ</span><span class="t tc9" data-tc="9">和差倍问题Ⅰ</span><span class="t tc13" data-tc="13">周期问题Ⅱ</span><span class="t tc22" data-tc="22">逻辑推理综合Ⅰ</span><span class="t tc6" data-tc="6">小数的认识与加减</span><span class="t tc34" data-tc="34">从树形图谈起</span><span class="t tc29" data-tc="29">奇数与偶数</span><span class="t tc18" data-tc="18">日历问题</span><span class="t tc32" data-tc="32">图形计数Ⅰ</span><span class="t tc25" data-tc="25">统计问题</span><span class="t tc26" data-tc="26">长方形与正方形</span><span class="t tc11" data-tc="11">盈亏问题</span></td></tr>
 <tr><td class="term">三冬</td>
 <td class="orgtd col-ld"><span class="t tc6" data-tc="6">小数加减法及巧算</span><span class="t tc6" data-tc="6">小数乘除法及四则</span><span class="t tc14" data-tc="14">平均数进阶</span><span class="t tc30" data-tc="30">路程、速度与时间</span><span class="t tc30" data-tc="30">相遇问题</span><span class="t tc30" data-tc="30">追及问题</span><span class="t tc25" data-tc="25">操作类智巧趣题</span></td>
 <td class="orgtd col-ny"><span class="t tc7" data-tc="7">数列与数表</span><span class="t tc28" data-tc="28">格点与面积</span><span class="t tc30" data-tc="30">多人行行程问题</span><span class="t tc24" data-tc="24">最值问题</span><span class="t tc31" data-tc="31">期末检测</span></td>
@@ -364,9 +385,9 @@ th.term{z-index:4;background:#e9e9e9}
 <td class="orgtd col-s"><span class="t tc6" data-tc="6">小数的认识与加减</span><span class="t tc27" data-tc="27">线与角</span><span class="t tc9" data-tc="9">和差倍综合</span><span class="t tc8" data-tc="8">字母表示数</span><span class="t tc7" data-tc="7">等差数列</span><span class="t tc19" data-tc="19">方阵</span><span class="t tc10" data-tc="10">鸡兔同笼Ⅰ</span></td></tr>
 <tr><td class="term">三春</td>
 <td class="orgtd col-ld"><span class="t tc6" data-tc="6">小数巧算</span><span class="t tc27" data-tc="27">三角形初步</span><span class="t tc27" data-tc="27">三角形进阶</span><span class="t tc7" data-tc="7">等差数列进阶</span><span class="t tc29" data-tc="29">整除特征初步</span><span class="t tc29" data-tc="29">整除特征进阶</span><span class="t tc1" data-tc="1">大数计算</span><span class="t tc1" data-tc="1">公式类计算</span><span class="t tc24" data-tc="24">最值问题初步</span><span class="t tc21" data-tc="21">抽屉原理初步</span><span class="t tc27" data-tc="27">图形分割与剪拼</span><span class="t tc27" data-tc="27">格点与割补</span><span class="t tc30" data-tc="30">环形跑道</span><span class="t tc30" data-tc="30">火车过桥</span><span class="t tc30" data-tc="30">流水行船</span><span class="t tc24" data-tc="24">必胜策略</span></td>
-<td class="orgtd col-ny"><span class="t tc6" data-tc="6">分数基本计算</span><span class="t tc25" data-tc="25">牛吃草问题</span><span class="t tc16" data-tc="16">比和比例的初步认识</span><span class="t tc28" data-tc="28">一半模型</span><span class="t tc28" data-tc="28">等高模型</span><span class="t tc20" data-tc="20">排列组合进阶</span><span class="t tc29" data-tc="29">整除</span><span class="t tc29" data-tc="29">质数与合数</span><span class="t tc30" data-tc="30">流水行船</span><span class="t tc31" data-tc="31">期末检测</span></td>
+<td class="orgtd col-ny"><span class="t tc6" data-tc="6">分数基本计算</span><span class="t tc25" data-tc="25">牛吃草问题</span><span class="t tc16" data-tc="16">比和比例的初步认识</span><span class="t tc28" data-tc="28">一半模型</span><span class="t tc28" data-tc="28">等高模型</span><span class="t tc32" data-tc="32">排列组合进阶</span><span class="t tc29" data-tc="29">整除</span><span class="t tc29" data-tc="29">质数与合数</span><span class="t tc30" data-tc="30">流水行船</span><span class="t tc31" data-tc="31">期末检测</span></td>
 <td class="orgtd col-x"><span class="t tc16" data-tc="16">比和比例</span><span class="t tc1" data-tc="1">多位数计算</span><span class="t tc1" data-tc="1">定义新运算Ⅰ</span><span class="t tc29" data-tc="29">质数合数</span><span class="t tc29" data-tc="29">分解质因数</span><span class="t tc29" data-tc="29">因数个数定理</span><span class="t tc29" data-tc="29">最大公因最小公倍</span><span class="t tc28" data-tc="28">等积变形</span><span class="t tc28" data-tc="28">等高模型</span><span class="t tc28" data-tc="28">一半模型</span><span class="t tc30" data-tc="30">环形跑道</span><span class="t tc30" data-tc="30">火车过桥</span><span class="t tc30" data-tc="30">流水行船</span><span class="t tc27" data-tc="27">格点与割补</span><span class="t tc21" data-tc="21">容斥原理Ⅰ</span></td>
-<td class="orgtd col-s"><span class="t tc1" data-tc="1">整数巧算</span><span class="t tc20" data-tc="20">整数分拆</span><span class="t tc20" data-tc="20">标数法Ⅰ</span><span class="t tc4" data-tc="4">巧填算符综合</span><span class="t tc15" data-tc="15">年龄问题Ⅱ</span><span class="t tc27" data-tc="27">平行四边形与梯形</span><span class="t tc20" data-tc="20">加乘原理Ⅱ</span><span class="t tc8" data-tc="8">简易方程Ⅰ</span><span class="t tc5" data-tc="5">带余除法Ⅱ</span><span class="t tc25" data-tc="25">点线排布</span><span class="t tc24" data-tc="24">统筹与最优化</span><span class="t tc8" data-tc="8">列方程解应用题Ⅰ</span><span class="t tc27" data-tc="27">图形分割与剪拼</span><span class="t tc18" data-tc="18">页码问题</span><span class="t tc30" data-tc="30">行程问题初识</span></td></tr>
+<td class="orgtd col-s"><span class="t tc1" data-tc="1">整数巧算</span><span class="t tc20" data-tc="20">整数分拆</span><span class="t tc34" data-tc="34">标数法Ⅰ</span><span class="t tc4" data-tc="4">巧填算符综合</span><span class="t tc15" data-tc="15">年龄问题Ⅱ</span><span class="t tc27" data-tc="27">平行四边形与梯形</span><span class="t tc33" data-tc="33">加乘原理Ⅱ</span><span class="t tc8" data-tc="8">简易方程Ⅰ</span><span class="t tc5" data-tc="5">带余除法Ⅱ</span><span class="t tc25" data-tc="25">点线排布</span><span class="t tc24" data-tc="24">统筹与最优化</span><span class="t tc8" data-tc="8">列方程解应用题Ⅰ</span><span class="t tc27" data-tc="27">图形分割与剪拼</span><span class="t tc18" data-tc="18">页码问题</span><span class="t tc30" data-tc="30">行程问题初识</span></td></tr>
 </tbody>
 </table>
 </div>
@@ -388,6 +409,9 @@ function clearAll(){
   for(var i=0;i<lgs.length;i++){lgs[i].classList.remove('on');}
   var tags = document.querySelectorAll('.t[data-tc]');
   for(var j=0;j<tags.length;j++){tags[j].classList.remove('dim','sel');}
+  for(var element of document.querySelectorAll('.outline-panels .sel, .outline-panels .dim, .outline-panels .topic-match')){
+    element.classList.remove('sel', 'dim', 'topic-match');
+  }
 }
 function pick(el){
   var n = el.getAttribute('data-tc');
@@ -403,6 +427,16 @@ function forceOn(n){
   for(var k=0;k<tags.length;k++){
     if(tags[k].getAttribute('data-tc')===n){tags[k].classList.add('sel');}
     else{tags[k].classList.add('dim');}
+  }
+  for(var label of document.querySelectorAll('.outline-panels [data-outline-topic], summary[data-catalog-summary-topic] > span.outline-topic')){
+    var topic = label.dataset.outlineTopic || label.parentElement.dataset.catalogSummaryTopic;
+    label.classList.add(topic === n ? 'sel' : 'dim');
+  }
+  var matches = document.querySelectorAll('[data-exam-topics~="' + n + '"], [data-catalog-topics~="' + n + '"]');
+  for(var match of matches){
+    match.classList.add('topic-match');
+    var group = match.closest('.catalog-topic-group');
+    if(group){ group.querySelector('summary').classList.add('topic-match'); }
   }
   showExamMatches(n);
 }
@@ -477,6 +511,7 @@ function syncExamGrade(){
   for(var link of document.querySelectorAll('.exam-header nav a')){
     var active = link.hash === '#exam-grade-' + grade;
     document.getElementById(link.hash.slice(1)).hidden = !active;
+    document.getElementById('exam-summary-' + link.hash.slice(-1)).hidden = !active;
     if(active){ link.setAttribute('aria-current', 'true'); }
     else{ link.removeAttribute('aria-current'); }
   }
@@ -591,6 +626,13 @@ document.addEventListener('click', function(e){
       }
       syncOutlineLocation();
       activateExamTopic();
+    }
+    return;
+  }
+  var catalogSummary = e.target.closest('summary[data-catalog-summary-topic]');
+  if(catalogSummary){
+    if(!catalogSummary.parentElement.open){
+      forceOn(catalogSummary.getAttribute('data-catalog-summary-topic'));
     }
     return;
   }
