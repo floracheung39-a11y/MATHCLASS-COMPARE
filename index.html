@@ -95,12 +95,13 @@ th.term{z-index:4;background:#e9e9e9}
 .exam-outline td small{color:#4e5c6c;white-space:nowrap}
 .exam-outline tbody tr{scroll-margin-top:24px}
 .exam-outline tr:target,.exam-outline tr:focus{background:#fff3cc}
-@media (min-width:861px){
-  .topic-layout{position:relative}
-  .outline-panels{position:absolute;inset:0 0 0 auto;width:max(320px,32%);align-content:start;overflow:auto;scrollbar-gutter:stable}
-}
+/* Keep expanding outlines out of the course table's layout. */
+.topic-layout{position:relative}
+.outline-panels{position:absolute;inset:0 0 0 auto;width:max(320px,32%);align-content:start;overflow:auto;overscroll-behavior:contain;scrollbar-gutter:stable;overflow-anchor:none}
+.outline-scroll{overscroll-behavior:contain}
 @media (max-width:860px){
-  .topic-layout{grid-template-columns:minmax(0,1fr)}
+  .topic-layout{grid-template-columns:minmax(0,1fr);padding-bottom:80px}
+  .outline-panels{inset:auto 0 auto;top:calc(100% - 74px);width:auto;max-height:min(420px,65vh);z-index:5;background:#fff}
 }
 .outline-topic{display:inline-block;text-decoration:underline;padding:2px 5px;border-radius:3px}
 </style>
@@ -108,7 +109,7 @@ th.term{z-index:4;background:#e9e9e9}
 <body>
 <div style="font-family:Microsoft YaHei,sans-serif;padding:10px;">
 <h2 style="font-size:15px;margin:4px 0 6px;">四机构×8学期专题对照</h2>
-<div style="font-size:11px;color:#666;background:#eef4fb;border:1px solid #d5e3f2;border-radius:6px;padding:5px 8px;margin-bottom:6px;">手机端请左右滑动查看，左侧学期列与顶部机构名固定不动。可勾选机构列比较。黑色虚线下划线的课时（乐读二暑10讲、二秋第1-8讲）可打开课件PDF：按住 Ctrl（Mac 用 Command）再点击在后台新标签打开、本页不动；直接点击在前台打开。橙色虚线下划线的納约二暑、二秋课时，点击会弹出课件选择框（课堂笔记/课后作业/空白课前测），点文件名打开PDF。点击课时高亮对应专题，再点一次或点空白处恢复。· v2.21</div>
+<div style="font-size:11px;color:#666;background:#eef4fb;border:1px solid #d5e3f2;border-radius:6px;padding:5px 8px;margin-bottom:6px;">手机端请左右滑动查看，左侧学期列与顶部机构名固定不动。可勾选机构列比较。黑色虚线下划线的课时（乐读二暑10讲、二秋第1-8讲）可打开课件PDF：按住 Ctrl（Mac 用 Command）再点击在后台新标签打开、本页不动；直接点击在前台打开。橙色虚线下划线的納约二暑、二秋课时，点击会弹出课件选择框（课堂笔记/课后作业/空白课前测），点文件名打开PDF。点击课时高亮对应专题，再点一次或点空白处恢复。· v2.22</div>
 <div class="topic-layout">
 <div class="topic-controls">
 <div id="course-topics" class="lggroup"><span class="lgname lgn-blue">计算</span>
@@ -353,6 +354,26 @@ function activateExamTopic(){
     topic.scrollIntoView({block:'nearest', inline:'nearest'});
   }
 }
+function revealOutlineRow(row){
+  var tableScroll = row.closest('.outline-scroll');
+  var sidebar = tableScroll.closest('.outline-panels');
+  row.focus({preventScroll:true});
+  var bounds = tableScroll.getBoundingClientRect();
+  var item = row.getBoundingClientRect();
+  var header = tableScroll.querySelector('thead').offsetHeight;
+  if(item.top < bounds.top + header){
+    tableScroll.scrollTop -= bounds.top + header - item.top;
+  }else if(item.bottom > bounds.bottom){
+    tableScroll.scrollTop += item.bottom - bounds.bottom;
+  }
+  bounds = sidebar.getBoundingClientRect();
+  item = row.getBoundingClientRect();
+  if(item.top < bounds.top){
+    sidebar.scrollTop -= bounds.top - item.top + header;
+  }else if(item.bottom > bounds.bottom){
+    sidebar.scrollTop += item.bottom - bounds.bottom;
+  }
+}
 function syncExamGrade(){
   var match = /^#exam-(?:grade-)?([23])(?:-(\d+))?$/.exec(location.hash);
   var grade = match ? match[1] : document.querySelector('.exam-header [aria-current]').hash.slice(-1);
@@ -368,8 +389,7 @@ function syncExamGrade(){
   if(match && match[2]){
     var target = document.getElementById(location.hash.slice(1));
     if(target){
-      target.focus({preventScroll:true});
-      target.scrollIntoView({block:'nearest'});
+      revealOutlineRow(target);
     }
   }
 }
@@ -379,8 +399,7 @@ function syncOutlineLocation(){
     var lesson = document.getElementById(location.hash.slice(1));
     if(lesson){
       document.getElementById('sandao-catalog').open = true;
-      lesson.focus({preventScroll:true});
-      lesson.scrollIntoView({block:'nearest'});
+      revealOutlineRow(lesson);
     }
   }
 }
