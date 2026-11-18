@@ -73,15 +73,21 @@ th.term{z-index:4;background:#e9e9e9}
 .topic-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,32%);gap:10px;align-items:start;margin-bottom:6px}
 .outline-panels{display:grid;grid-template-columns:minmax(0,1fr);gap:6px;min-width:0}
 .exam-outline .catalog-table td:last-child{white-space:normal}
+.catalog-number{width:32px}
+.catalog-topic{width:43%}
+.exam-outline .catalog-group>td{padding:0}
+.exam-outline .catalog-topic-group summary{font-size:11px;padding:4px}
+.exam-outline .catalog-topic-group[open] summary{margin-bottom:0}
+.catalog-count{font-weight:normal;color:#455566}
 .exam-matches a{color:#145b94}
 .exam-matches{background:#eef4fb;border:1px solid #d5e3f2;border-radius:6px;padding:8px;margin:8px 0;font-size:12px}
 .catalog-match-heading{margin-top:6px}
 .exam-matches ul{display:flex;flex-wrap:wrap;gap:6px 18px;padding:0;margin:6px 0 0;list-style:none}
 .exam-outline{min-width:0;border:1px solid #d5e3f2;border-radius:6px;padding:7px;color:#263647;font-size:11px}
 .exam-header{display:flex;align-items:center;justify-content:flex-end;gap:6px;flex-wrap:wrap}
-.exam-outline summary{cursor:pointer;padding:4px 5px;color:#145b94;font-size:14px;font-weight:bold}
-.exam-outline summary:focus-visible{outline:2px solid #145b94;outline-offset:2px;border-radius:3px}
-.exam-outline[open] summary{border-bottom:1px solid #e3e9ef;margin-bottom:5px}
+.exam-outline>summary{cursor:pointer;padding:4px 5px;color:#145b94;font-size:14px;font-weight:bold}
+.exam-outline>summary:focus-visible{outline:2px solid #145b94;outline-offset:2px;border-radius:3px}
+.exam-outline[open]>summary{border-bottom:1px solid #e3e9ef;margin-bottom:5px}
 .exam-header nav{display:flex;gap:3px}
 .exam-header nav a{color:#145b94;text-decoration:none;padding:3px 6px;border-radius:4px}
 .exam-header nav a[aria-current]{background:#145b94;color:#fff}
@@ -109,7 +115,7 @@ th.term{z-index:4;background:#e9e9e9}
 <body>
 <div style="font-family:Microsoft YaHei,sans-serif;padding:10px;">
 <h2 style="font-size:15px;margin:4px 0 6px;">四机构×8学期专题对照</h2>
-<div style="font-size:11px;color:#666;background:#eef4fb;border:1px solid #d5e3f2;border-radius:6px;padding:5px 8px;margin-bottom:6px;">手机端请左右滑动查看，左侧学期列与顶部机构名固定不动。可勾选机构列比较。黑色虚线下划线的课时（乐读二暑10讲、二秋第1-8讲）可打开课件PDF：按住 Ctrl（Mac 用 Command）再点击在后台新标签打开、本页不动；直接点击在前台打开。橙色虚线下划线的納约二暑、二秋课时，点击会弹出课件选择框（课堂笔记/课后作业/空白课前测），点文件名打开PDF。点击课时高亮对应专题，再点一次或点空白处恢复。· v2.22</div>
+<div style="font-size:11px;color:#666;background:#eef4fb;border:1px solid #d5e3f2;border-radius:6px;padding:5px 8px;margin-bottom:6px;">手机端请左右滑动查看，左侧学期列与顶部机构名固定不动。可勾选机构列比较。黑色虚线下划线的课时（乐读二暑10讲、二秋第1-8讲）可打开课件PDF：按住 Ctrl（Mac 用 Command）再点击在后台新标签打开、本页不动；直接点击在前台打开。橙色虚线下划线的納约二暑、二秋课时，点击会弹出课件选择框（课堂笔记/课后作业/空白课前测），点文件名打开PDF。点击课时高亮对应专题，再点一次或点空白处恢复。· v2.23</div>
 <div class="topic-layout">
 <div class="topic-controls">
 <div id="course-topics" class="lggroup"><span class="lgname lgn-blue">计算</span>
@@ -194,31 +200,62 @@ th.term{z-index:4;background:#e9e9e9}
 <summary>三导目录</summary>
 <div class="outline-scroll" role="region" aria-label="三导课程目录" tabindex="0">
 <table class="catalog-table">
+<colgroup><col class="catalog-number"><col><col class="catalog-topic"></colgroup>
 <thead><tr><th scope="col">讲次</th><th scope="col">课程</th><th scope="col">对应专题</th></tr></thead>
 <tbody>
+<tr class="catalog-group"><td colspan="3">
+<details class="catalog-topic-group">
+<summary><span class="outline-topic tc1">巧算/四则运算</span> <span class="catalog-count">3讲</span></summary>
+<table class="catalog-table" aria-label="巧算/四则运算讲次">
+<colgroup><col class="catalog-number"><col><col class="catalog-topic"></colgroup>
+<tbody>
 <tr id="sandao-1" tabindex="-1" data-catalog-topics="1"><th scope="row">1</th><td class="catalog-lesson">四则运算一</td><td><a class="outline-topic tc1" href="#topic-1" data-outline-topic="1">巧算/四则运算</a></td></tr>
+<tr id="sandao-13" tabindex="-1" data-catalog-topics="1"><th scope="row">13</th><td class="catalog-lesson">四则运算二</td><td><a class="outline-topic tc1" href="#topic-1" data-outline-topic="1">巧算/四则运算</a></td></tr>
+<tr id="sandao-18" tabindex="-1" data-catalog-topics="1"><th scope="row">18</th><td class="catalog-lesson">四则运算三</td><td><a class="outline-topic tc1" href="#topic-1" data-outline-topic="1">巧算/四则运算</a></td></tr>
+</tbody>
+</table>
+</details>
+</td></tr>
+<tr class="catalog-group"><td colspan="3">
+<details class="catalog-topic-group">
+<summary><span class="outline-topic tc25">生活趣题/组合游戏</span> <span class="catalog-count">3讲</span></summary>
+<table class="catalog-table" aria-label="生活趣题/组合游戏讲次">
+<colgroup><col class="catalog-number"><col><col class="catalog-topic"></colgroup>
+<tbody>
 <tr id="sandao-2" tabindex="-1" data-catalog-topics="25"><th scope="row">2</th><td class="catalog-lesson">基本应用题</td><td><a class="outline-topic tc25" href="#topic-25" data-outline-topic="25">生活趣题/组合游戏</a></td></tr>
+<tr id="sandao-12" tabindex="-1" data-catalog-topics="25"><th scope="row">12</th><td class="catalog-lesson">智巧趣题一</td><td><a class="outline-topic tc25" href="#topic-25" data-outline-topic="25">生活趣题/组合游戏</a></td></tr>
+<tr id="sandao-23" tabindex="-1" data-catalog-topics="25"><th scope="row">23</th><td class="catalog-lesson">智巧趣题二</td><td><a class="outline-topic tc25" href="#topic-25" data-outline-topic="25">生活趣题/组合游戏</a></td></tr>
+</tbody>
+</table>
+</details>
+</td></tr>
 <tr id="sandao-3" tabindex="-1" data-catalog-topics="20"><th scope="row">3</th><td class="catalog-lesson">枚举法一</td><td><a class="outline-topic tc20" href="#topic-20" data-outline-topic="20">计数/枚举/树形图/加乘/标数</a></td></tr>
 <tr id="sandao-4" tabindex="-1" data-catalog-topics="7"><th scope="row">4</th><td class="catalog-lesson">找规律</td><td><a class="outline-topic tc7" href="#topic-7" data-outline-topic="7">数列/找规律</a></td></tr>
 <tr id="sandao-5" tabindex="-1" data-catalog-topics="9"><th scope="row">5</th><td class="catalog-lesson">和差倍问题一</td><td><a class="outline-topic tc9" href="#topic-9" data-outline-topic="9">和差倍</a></td></tr>
+<tr class="catalog-group"><td colspan="3">
+<details class="catalog-topic-group">
+<summary><span class="outline-topic tc4">数字谜/填算符</span> <span class="catalog-count">3讲</span></summary>
+<table class="catalog-table" aria-label="数字谜/填算符讲次">
+<colgroup><col class="catalog-number"><col><col class="catalog-topic"></colgroup>
+<tbody>
 <tr id="sandao-6" tabindex="-1" data-catalog-topics="3 4"><th scope="row">6</th><td class="catalog-lesson">简单加减法竖式</td><td><a class="outline-topic tc3" href="#topic-3" data-outline-topic="3">竖式</a> <a class="outline-topic tc4" href="#topic-4" data-outline-topic="4">数字谜/填算符</a></td></tr>
+<tr id="sandao-16" tabindex="-1" data-catalog-topics="3 4"><th scope="row">16</th><td class="catalog-lesson">简单乘除法竖式</td><td><a class="outline-topic tc3" href="#topic-3" data-outline-topic="3">竖式</a> <a class="outline-topic tc4" href="#topic-4" data-outline-topic="4">数字谜/填算符</a></td></tr>
+<tr id="sandao-20" tabindex="-1" data-catalog-topics="4"><th scope="row">20</th><td class="catalog-lesson">算符与数字</td><td><a class="outline-topic tc4" href="#topic-4" data-outline-topic="4">数字谜/填算符</a></td></tr>
+</tbody>
+</table>
+</details>
+</td></tr>
 <tr id="sandao-7" tabindex="-1" data-catalog-topics="13"><th scope="row">7</th><td class="catalog-lesson">周期问题</td><td><a class="outline-topic tc13" href="#topic-13" data-outline-topic="13">周期</a></td></tr>
 <tr id="sandao-8" tabindex="-1" data-catalog-topics="10"><th scope="row">8</th><td class="catalog-lesson">鸡兔同笼问题一</td><td><a class="outline-topic tc10" href="#topic-10" data-outline-topic="10">鸡兔同笼</a></td></tr>
 <tr id="sandao-9" tabindex="-1" data-catalog-topics="7"><th scope="row">9</th><td class="catalog-lesson">等差数列</td><td><a class="outline-topic tc7" href="#topic-7" data-outline-topic="7">数列/找规律</a></td></tr>
 <tr id="sandao-10" tabindex="-1" data-catalog-topics="27"><th scope="row">10</th><td class="catalog-lesson">几何图形的认知</td><td><a class="outline-topic tc27" href="#topic-27" data-outline-topic="27">图形基础</a></td></tr>
 <tr id="sandao-11" tabindex="-1" data-catalog-topics="11"><th scope="row">11</th><td class="catalog-lesson">盈亏问题一</td><td><a class="outline-topic tc11" href="#topic-11" data-outline-topic="11">盈亏</a></td></tr>
-<tr id="sandao-12" tabindex="-1" data-catalog-topics="25"><th scope="row">12</th><td class="catalog-lesson">智巧趣题一</td><td><a class="outline-topic tc25" href="#topic-25" data-outline-topic="25">生活趣题/组合游戏</a></td></tr>
-<tr id="sandao-13" tabindex="-1" data-catalog-topics="1"><th scope="row">13</th><td class="catalog-lesson">四则运算二</td><td><a class="outline-topic tc1" href="#topic-1" data-outline-topic="1">巧算/四则运算</a></td></tr>
 <tr id="sandao-14" tabindex="-1" data-catalog-topics="20"><th scope="row">14</th><td class="catalog-lesson">枚举法二</td><td><a class="outline-topic tc20" href="#topic-20" data-outline-topic="20">计数/枚举/树形图/加乘/标数</a></td></tr>
 <tr id="sandao-15" tabindex="-1" data-catalog-topics="9"><th scope="row">15</th><td class="catalog-lesson">和差倍问题二</td><td><a class="outline-topic tc9" href="#topic-9" data-outline-topic="9">和差倍</a></td></tr>
-<tr id="sandao-16" tabindex="-1" data-catalog-topics="3 4"><th scope="row">16</th><td class="catalog-lesson">简单乘除法竖式</td><td><a class="outline-topic tc3" href="#topic-3" data-outline-topic="3">竖式</a> <a class="outline-topic tc4" href="#topic-4" data-outline-topic="4">数字谜/填算符</a></td></tr>
 <tr id="sandao-17" tabindex="-1" data-catalog-topics="10"><th scope="row">17</th><td class="catalog-lesson">鸡兔同笼问题二</td><td><a class="outline-topic tc10" href="#topic-10" data-outline-topic="10">鸡兔同笼</a></td></tr>
-<tr id="sandao-18" tabindex="-1" data-catalog-topics="1"><th scope="row">18</th><td class="catalog-lesson">四则运算三</td><td><a class="outline-topic tc1" href="#topic-1" data-outline-topic="1">巧算/四则运算</a></td></tr>
 <tr id="sandao-19" tabindex="-1" data-catalog-topics="12 19"><th scope="row">19</th><td class="catalog-lesson">间隔与阵列</td><td><a class="outline-topic tc12" href="#topic-12" data-outline-topic="12">植树</a> <a class="outline-topic tc19" href="#topic-19" data-outline-topic="19">方阵</a></td></tr>
-<tr id="sandao-20" tabindex="-1" data-catalog-topics="4"><th scope="row">20</th><td class="catalog-lesson">算符与数字</td><td><a class="outline-topic tc4" href="#topic-4" data-outline-topic="4">数字谜/填算符</a></td></tr>
 <tr id="sandao-21" tabindex="-1" data-catalog-topics="11"><th scope="row">21</th><td class="catalog-lesson">盈亏问题二</td><td><a class="outline-topic tc11" href="#topic-11" data-outline-topic="11">盈亏</a></td></tr>
 <tr id="sandao-22" tabindex="-1" data-catalog-topics="27"><th scope="row">22</th><td class="catalog-lesson">长度与角度的计算</td><td><a class="outline-topic tc27" href="#topic-27" data-outline-topic="27">图形基础</a></td></tr>
-<tr id="sandao-23" tabindex="-1" data-catalog-topics="25"><th scope="row">23</th><td class="catalog-lesson">智巧趣题二</td><td><a class="outline-topic tc25" href="#topic-25" data-outline-topic="25">生活趣题/组合游戏</a></td></tr>
 <tr id="sandao-24" tabindex="-1" data-catalog-topics=""><th scope="row">24</th><td class="catalog-lesson">数学万花筒</td><td>—</td></tr>
 </tbody>
 </table>
@@ -399,6 +436,8 @@ function syncOutlineLocation(){
     var lesson = document.getElementById(location.hash.slice(1));
     if(lesson){
       document.getElementById('sandao-catalog').open = true;
+      var group = lesson.closest('.catalog-topic-group');
+      if(group){ group.open = true; }
       revealOutlineRow(lesson);
     }
   }
