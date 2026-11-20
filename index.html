@@ -32,8 +32,6 @@ a.t{text-decoration:none}
 .catalog-lesson .lc-name{display:block}
 .catalog-lesson .sd-pdfs{display:flex;flex-wrap:wrap;gap:2px 8px;margin-top:2px}
 .catalog-lesson .sd-pdfs a{color:#145b94;font-size:10px;white-space:nowrap;border:1px solid #9ec3e0;border-radius:4px;padding:1px 5px;background:#f0f7fd}
-.catalog-lesson .lc-name.sd-pop{cursor:pointer;text-decoration:underline dotted #E0872D;text-underline-offset:2px}
-.catalog-lesson .lc-name.sd-pop:hover{color:#C0392B}
 .haspop{text-decoration:underline dotted #E0872D;text-underline-offset:2px}
 #nyModal{position:fixed;inset:0;background:rgba(20,20,20,.45);display:none;justify-content:center;align-items:center;z-index:999;padding:12px}
 #nyModal.on{display:flex}
@@ -135,13 +133,14 @@ th.term{z-index:4;background:#e9e9e9}
 .catalog-topic-group summary .outline-topic{overflow-wrap:anywhere}
 .catalog-topic-group .catalog-table{table-layout:fixed}
 .catalog-topic-group .catalog-table td{overflow-wrap:anywhere}
+.catalog-no-pdf{color:#9aa4ae;font-size:10px;font-style:italic}
 
 </style>
 </head>
 <body>
 <div style="font-family:Microsoft YaHei,sans-serif;padding:10px;">
 <h2 style="font-size:15px;margin:4px 0 6px;">四机构×8学期专题对照</h2>
-<div style="font-size:11px;color:#666;background:#eef4fb;border:1px solid #d5e3f2;border-radius:6px;padding:5px 8px;margin-bottom:6px;">手机端请左右滑动查看，左侧学期列与顶部机构名固定不动。可勾选机构列比较。黑色虚线下划线的课时（乐读二暑10讲、二秋第1-8讲）可打开课件PDF：按住 Ctrl（Mac 用 Command）再点击在后台新标签打开、本页不动；直接点击在前台打开。橙色虚线下划线的納约二暑、二秋课时，点击会弹出课件选择框（课堂笔记/课后作业/空白课前测），点文件名打开PDF。点击课时高亮对应专题，再点一次或点空白处恢复。三导目录讲次后附带框 PDF 链接，点击可打开；讲次7「周期问题」点标题弹出课件选择框。· v2.29</div>
+<div style="font-size:11px;color:#666;background:#eef4fb;border:1px solid #d5e3f2;border-radius:6px;padding:5px 8px;margin-bottom:6px;">手机端请左右滑动查看，左侧学期列与顶部机构名固定不动。可勾选机构列比较。黑色虚线下划线的课时（乐读二暑10讲、二秋第1-8讲）可打开课件PDF：按住 Ctrl（Mac 用 Command）再点击在后台新标签打开、本页不动；直接点击在前台打开。橙色虚线下划线的納约二暑、二秋课时，点击会弹出课件选择框（课堂笔记/课后作业/空白课前测），点文件名打开PDF。点击课时高亮对应专题，再点一次或点空白处恢复。三导目录专题点三角形展开，讲次后附带框 PDF 链接，点击可打开。· v2.30</div>
 <div class="topic-layout">
 <div class="topic-controls">
 <div id="course-topics" class="lggroup"><span class="lgname lgn-blue">计算</span>
@@ -304,7 +303,17 @@ th.term{z-index:4;background:#e9e9e9}
 </table>
 </details>
 </td></tr>
-<tr id="sandao-7" tabindex="-1" data-catalog-topics="13"><th scope="row">7</th><td class="catalog-lesson"><span class="lc-name sd-pop" data-sdbox="周期问题" title="点击打开课件PDF列表">周期问题</span></td><td><a class="outline-topic tc13" href="#topic-13" data-outline-topic="13">周期</a></td></tr>
+<tr class="catalog-group"><td colspan="3">
+<details class="catalog-topic-group">
+<summary data-catalog-summary-topic="13"><span class="outline-topic tc13">周期</span> <span class="catalog-count">1讲</span></summary>
+<table class="catalog-table" aria-label="周期讲次">
+<colgroup><col class="catalog-number"><col></colgroup>
+<tbody>
+<tr id="sandao-7" tabindex="-1" data-catalog-topics="13"><th scope="row">7</th><td class="catalog-lesson"><span class="lc-name">周期问题</span><span class="sd-pdfs"><a class="haspdf" href="pdfs/三导/3导引秋6-鸡兔同笼+周期问题.pdf" target="_blank" rel="noopener">鸡兔+周期课前测</a><a class="haspdf" href="pdfs/三导/3导引秋7-周期问题.pdf" target="_blank" rel="noopener">导引7·周期</a><a class="haspdf" href="pdfs/三导/3年级刷题导引班_秋上_第7讲笔记.pdf" target="_blank" rel="noopener">秋上7讲笔记</a></span></td></tr>
+</tbody>
+</table>
+</details>
+</td></tr>
 <tr class="catalog-group"><td colspan="3">
 <details class="catalog-topic-group">
 <summary data-catalog-summary-topic="10"><span class="outline-topic tc10">鸡兔同笼</span> <span class="catalog-count">2讲</span></summary>
@@ -341,8 +350,28 @@ th.term{z-index:4;background:#e9e9e9}
 </table>
 </details>
 </td></tr>
-<tr id="sandao-19" tabindex="-1" data-catalog-topics="12 19"><th scope="row">19</th><td class="catalog-lesson">间隔与阵列</td><td><a class="outline-topic tc12" href="#topic-12" data-outline-topic="12">植树</a> <a class="outline-topic tc19" href="#topic-19" data-outline-topic="19">方阵</a></td></tr>
-<tr id="sandao-24" tabindex="-1" data-catalog-topics=""><th scope="row">24</th><td class="catalog-lesson">数学万花筒</td><td>—</td></tr>
+<tr class="catalog-group"><td colspan="3">
+<details class="catalog-topic-group">
+<summary><span class="outline-topic tc12">植树</span> <span class="outline-topic tc19">方阵</span> <span class="catalog-count">1讲</span></summary>
+<table class="catalog-table" aria-label="间隔与阵列讲次">
+<colgroup><col class="catalog-number"><col></colgroup>
+<tbody>
+<tr id="sandao-19" tabindex="-1" data-catalog-topics="12 19"><th scope="row">19</th><td class="catalog-lesson"><span class="lc-name">间隔与阵列</span><span class="catalog-no-pdf">暂无课件</span></td></tr>
+</tbody>
+</table>
+</details>
+</td></tr>
+<tr class="catalog-group"><td colspan="3">
+<details class="catalog-topic-group">
+<summary><span class="outline-topic tc31">数学万花筒</span> <span class="catalog-count">1讲</span></summary>
+<table class="catalog-table" aria-label="数学万花筒讲次">
+<colgroup><col class="catalog-number"><col></colgroup>
+<tbody>
+<tr id="sandao-24" tabindex="-1" data-catalog-topics=""><th scope="row">24</th><td class="catalog-lesson"><span class="lc-name">数学万花筒</span><span class="catalog-no-pdf">暂无课件</span></td></tr>
+</tbody>
+</table>
+</details>
+</td></tr>
 </tbody>
 </table>
 </div>
@@ -621,31 +650,7 @@ function nyOpen(name){
 function nyClose(){
   document.getElementById('nyModal').classList.remove('on');
 }
-var SD_FILES={
- '周期问题':['鸡兔+周期课前测|pdfs/三导/3导引秋6-鸡兔同笼+周期问题.pdf',
-             '导引7·周期|pdfs/三导/3导引秋7-周期问题.pdf',
-             '秋上7讲笔记|pdfs/三导/3年级刷题导引班_秋上_第7讲笔记.pdf']
-};
-function sdOpen(name){
-  var arr=SD_FILES[name];
-  if(!arr){return;}
-  var h='<div class="nygrp nyg-jy"><div class="nygtitle">课件 PDF（'+arr.length+'份）</div>';
-  for(var i=0;i<arr.length;i++){
-    var p=arr[i].split('|');
-    h+='<a href="'+p[1]+'" target="_blank" rel="noopener">'+p[0]+'</a>';
-  }
-  h+='</div>';
-  document.getElementById('nyTitle').textContent='三导目录 · 第7讲 · '+name;
-  document.getElementById('nyBody').innerHTML=h;
-  document.getElementById('nyModal').classList.add('on');
-}
 document.addEventListener('click', function(e){
-  var sdPop = e.target.closest ? e.target.closest('.sd-pop') : null;
-  if(sdPop){
-    e.preventDefault();
-    sdOpen(sdPop.getAttribute('data-sdbox'));
-    return;
-  }
   var outlineLink = e.target.closest('[data-outline-topic], #exam-matches a, .exam-header nav a');
   if(outlineLink){
     if(!e.ctrlKey && !e.metaKey && !e.shiftKey && !e.altKey){
